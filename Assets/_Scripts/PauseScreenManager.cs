@@ -18,8 +18,18 @@ public class PauseScreenManager : MonoBehaviour
     private void Start()
     {
         pauseScreen.SetActive(false);
-        pauseGameButton.onClick.AddListener(() => PauseGameButtonClicked());
-        resumeGameButton.onClick.AddListener(() => ResumeButtonClicked());
+        if (pauseGameButton != null)
+        {
+            pauseGameButton.onClick.AddListener(() => PauseGameButtonClicked());
+        }
+        if (resumeGameButton != null)
+        {
+            resumeGameButton.onClick.AddListener(() => ResumeButtonClicked());
+        }
+        if (backToMainMenuButton != null)
+        {
+            backToMainMenuButton.onClick.AddListener(() => BackToMainMenuButtonClicked());
+        }
     }
 
     public void PauseGameButtonClicked()

@@ -391,7 +391,7 @@ RectTransform:
   - {fileID: 3355299333016912209}
   - {fileID: 3355299333340539431}
   m_Father: {fileID: 3355299332434042259}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.18353575}
   m_AnchorMax: {x: 1, y: 0.8141476}
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07c6d1c6f93b76419a817936badaa33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseScreen: {fileID: 3355299332434042258}
+  pauseScreen: {fileID: 3355299332018998028}
   resumeGameButton: {fileID: 3355299331550674997}
   pauseGameButton: {fileID: 5856515229253040530}
   backToMainMenuButton: {fileID: 3355299331697253510}
@@ -483,6 +483,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6601868603842058901}
   - {fileID: 3355299332018998029}
   m_Father: {fileID: 3355299333053837290}
   m_RootOrder: 2
@@ -1326,8 +1327,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 6601868603842058901}
+  m_Children: []
   m_Father: {fileID: 3355299332938471435}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1341,7 +1341,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 3355299333565937999}
+    m_TransformParent: {fileID: 3355299332434042259}
     m_Modifications:
     - target: {fileID: 2979105699841009724, guid: ea1a9b2273e61814a80a06b0cd00d619, type: 3}
       propertyPath: m_Name

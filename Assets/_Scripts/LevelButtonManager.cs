@@ -25,11 +25,11 @@ public class LevelButtonManager : MonoBehaviour
     {
         ID = (Array.IndexOf(buttons, button) + 1);
 
-        StartCoroutine(LoadSceneAsync("GameScreen"));
+        LoadSceneAsync("GameScreen");
         Debug.Log(ID);
     }
 
-    private IEnumerator LoadSceneAsync(string SceneName)
+    private void LoadSceneAsync(string SceneName)
     {
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(SceneName, LoadSceneMode.Single);
 
@@ -57,9 +57,9 @@ public class LevelButtonManager : MonoBehaviour
             gameManager.SetLevelID(ID);
         };
 
-        while (!asyncOperation.isDone)
+        /*while (!asyncOperation.isDone)
         {
             yield return null;
-        }
+        }*/
     }
 }

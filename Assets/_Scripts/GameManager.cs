@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
-        yield return new WaitForSeconds(5);
+        yield return Countdown();
         InitializeGame();
         yield return new WaitForEndOfFrame();
     }
@@ -131,7 +131,7 @@ public class GameManager : MonoBehaviour
         return matches == inputWord.Length;
     }
 
-    public void DisplayAlert(String name, String text, float duration1, float duration2, int fontSize, float inBetween = 0)
+    public WaitForSeconds DisplayAlert(String name, String text, float duration1, float duration2, int fontSize, float inBetween = 0)
     {
         Vector2 size = new Vector2(Screen.width * 0.8f, Screen.height * 0.1f);
         Vector2 position = GameObject.Find("Game Alert").transform.position;
@@ -151,5 +151,23 @@ public class GameManager : MonoBehaviour
         gameAlert.GetComponent<GameAlert>().duration1 = duration1;
         gameAlert.GetComponent<GameAlert>().duration2 = duration2;
         gameAlert.GetComponent<GameAlert>().inBetween = inBetween;
+        return new WaitForSeconds(duration1 + duration2 + inBetween);
+    }
+
+    public IEnumerator Countdown()
+    {
+        GameObject BackgroundBlur = GameObject.Find("Canvas - Blur");
+        GameObject GameAlert = GameObject.Find("Game Alert");
+
+        GameAlert.transform.SetParent(BackgroundBlur.transform);
+        GameAlert.transform.SetAsLastSibling();
+
+        yield return DisplayAlert("3", "3", 0.7f, 0.1f, 200, 0.3f);
+        yield return DisplayAlert("2", "2", 0.7f, 0.1f, 200, 0.3f);
+        yield return DisplayAlert("1", "1", 0.7f, 0.1f, 200, 0.3f);
+        yield return DisplayAlert("Start", "Start!", 0.5f, 0.4f, 150, 0.3f);
+
+        GameAlert.transform.transform.SetParent(GameObject.Find("GUICanvas").transform);
+        BackgroundBlur.SetActive(false);
     }
 }

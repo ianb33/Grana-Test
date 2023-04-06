@@ -9,9 +9,10 @@ using UnityEngine.SceneManagement;
 public class PauseScreenManager : MonoBehaviour
 {
     [SerializeField] GameObject pauseScreen;
-    [SerializeField] Button resumeGameButton;
-    [SerializeField] Button pauseGameButton;
-    [SerializeField] Button backToMainMenuButton;
+    [SerializeField] private Button resumeGameButton;
+    [SerializeField] private Button pauseGameButton;
+    [SerializeField] private Button backToMainMenuButton;
+    [SerializeField] private GameTimer gameTimer;
 
     private bool paused = false;
 
@@ -34,12 +35,20 @@ public class PauseScreenManager : MonoBehaviour
 
     public void PauseGameButtonClicked()
     {
+        if (gameTimer != null)
+        {
+            gameTimer.TogglePause();
+        }
         pauseScreen.SetActive(true);
         Debug.Log("Paused");
     }
 
     public void ResumeButtonClicked()
     {
+        if (gameTimer != null)
+        {
+            gameTimer.TogglePause();
+        }
         pauseScreen.SetActive(false);
     }
 

@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<string> wordsUsed;
     [SerializeField] private TextMeshProUGUI scoreBox;
     [SerializeField] private TextMeshProUGUI wordDisplay;
+    [SerializeField] private GameObject gameTimer;
 
     private Random rand = new Random();
 
@@ -169,5 +170,6 @@ public class GameManager : MonoBehaviour
 
         GameAlert.transform.transform.SetParent(GameObject.Find("GUICanvas").transform);
         BackgroundBlur.SetActive(false);
+        gameTimer.GetComponent<GameTimer>().TogglePause();
     }
 }

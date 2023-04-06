@@ -123,6 +123,22 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &119105301 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4516835428915280029, guid: 7dfc5ca9462aa5b498fb25118401273a, type: 3}
+  m_PrefabInstance: {fileID: 794958548}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &119105303 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 347017372723658695, guid: 7dfc5ca9462aa5b498fb25118401273a, type: 3}
+  m_PrefabInstance: {fileID: 794958548}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 119105301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49fba617bad23b49bd4fd022b72e4fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &364106105
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -431,11 +447,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7650548088164520267, guid: 7dfc5ca9462aa5b498fb25118401273a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7650548088164520267, guid: 7dfc5ca9462aa5b498fb25118401273a, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7650548088164520267, guid: 7dfc5ca9462aa5b498fb25118401273a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -471,7 +487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7650548088164520267, guid: 7dfc5ca9462aa5b498fb25118401273a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -79
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 7650548088164520267, guid: 7dfc5ca9462aa5b498fb25118401273a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -744,6 +760,7 @@ MonoBehaviour:
   wordsUsed: []
   scoreBox: {fileID: 978113721}
   wordDisplay: {fileID: 1625348516}
+  gameTimer: {fileID: 119105301}
 --- !u!1 &935286573
 GameObject:
   m_ObjectHideFlags: 0
@@ -1521,6 +1538,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3355299332018998016, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
+      propertyPath: gameTimer
+      value: 
+      objectReference: {fileID: 119105303}
     - target: {fileID: 3355299332434042258, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
       propertyPath: m_IsActive
       value: 1

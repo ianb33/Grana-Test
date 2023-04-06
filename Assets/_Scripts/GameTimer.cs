@@ -9,7 +9,7 @@ public class GameTimer : MonoBehaviour
     [SerializeField] public float gameTime;
     [SerializeField] public GameObject timer;
     [SerializeField] public float duration;
-    public bool isPaused = false;
+    public float deltaTime = 0.0f;
     private Color endColor = Color.red;
 
     // Start is called before the first frame update
@@ -25,9 +25,9 @@ public class GameTimer : MonoBehaviour
         Color startColor = timer.GetComponent<Image>().color;
         float duration = gameTime;
 
-        while (gameTime > 0 && !isPaused)
+        while (gameTime > 0)
         {
-            gameTime -= Time.deltaTime;
+            gameTime -= deltaTime * Time.deltaTime;
 
             //update color
             timer.GetComponent<Image>().color = Color.Lerp(endColor, startColor, gameTime / duration);
@@ -44,7 +44,11 @@ public class GameTimer : MonoBehaviour
             Debug.Log("Time's up!");
             OnTimerEnd();
         }
+    }
 
+    public void TogglePause()
+    {
+        deltaTime = 1 - deltaTime;
     }
 
     private void OnTimerEnd()

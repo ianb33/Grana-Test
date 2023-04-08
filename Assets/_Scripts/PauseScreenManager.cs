@@ -12,13 +12,17 @@ public class PauseScreenManager : MonoBehaviour
     [SerializeField] private Button resumeGameButton;
     [SerializeField] private Button pauseGameButton;
     [SerializeField] private Button backToMainMenuButton;
+    [SerializeField] private Button backToLevelsButton;
     [SerializeField] private GameTimer gameTimer;
 
     private bool paused = false;
 
     private void Start()
     {
-        pauseScreen.SetActive(false);
+        if (backToLevelsButton != null)
+        {
+            backToLevelsButton.onClick.AddListener(() => BackToLevelsClicked());
+        }
         if (pauseGameButton != null)
         {
             pauseGameButton.onClick.AddListener(() => PauseGameButtonClicked());
@@ -57,4 +61,8 @@ public class PauseScreenManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
     }
 
+    public void BackToLevelsClicked()
+    {
+        SceneManager.LoadScene("LevelsScreen");
+    }
 }

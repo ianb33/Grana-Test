@@ -34,7 +34,7 @@ public class GameTimer : MonoBehaviour
 
             //update size
             float width = gameTime / this.duration * Screen.width;
-            timer.GetComponent<RectTransform>().sizeDelta = new Vector2(width, Screen.height * 0.05f);
+            timer.GetComponent<RectTransform>().sizeDelta = new Vector2(width, Screen.height * 0.1f);
 
             yield return null;
         }

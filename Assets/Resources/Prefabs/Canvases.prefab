@@ -35,10 +35,10 @@ RectTransform:
   m_Father: {fileID: 3355299333340539431}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 296.21768, y: -138.06496}
+  m_SizeDelta: {x: 592.43536, y: 276.1299}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3355299331550674987
 CanvasRenderer:
@@ -194,10 +194,10 @@ RectTransform:
   m_Father: {fileID: 3355299333340539431}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 296.21768, y: -434.1949}
+  m_SizeDelta: {x: 592.43536, y: 276.1299}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3355299331697253508
 CanvasRenderer:
@@ -368,14 +368,13 @@ GameObject:
   - component: {fileID: 3355299332018998029}
   - component: {fileID: 3355299332018998019}
   - component: {fileID: 3355299332018998018}
-  - component: {fileID: 3355299332018998016}
   m_Layer: 0
   m_Name: Pause Screen Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3355299332018998029
 RectTransform:
   m_ObjectHideFlags: 0
@@ -391,7 +390,7 @@ RectTransform:
   - {fileID: 3355299333016912209}
   - {fileID: 3355299333340539431}
   m_Father: {fileID: 3355299332434042259}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.18353575}
   m_AnchorMax: {x: 1, y: 0.8141476}
@@ -436,22 +435,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &3355299332018998016
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3355299332018998028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a07c6d1c6f93b76419a817936badaa33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pauseScreen: {fileID: 3355299332018998028}
-  resumeGameButton: {fileID: 3355299331550674997}
-  pauseGameButton: {fileID: 5856515229253040530}
-  backToMainMenuButton: {fileID: 3355299331697253510}
 --- !u!1 &3355299332434042258
 GameObject:
   m_ObjectHideFlags: 0
@@ -464,6 +447,7 @@ GameObject:
   - component: {fileID: 3355299332434042262}
   - component: {fileID: 3355299332434042257}
   - component: {fileID: 3355299332434042256}
+  - component: {fileID: 5874326654744081424}
   m_Layer: 0
   m_Name: Canvas - Pause Menu
   m_TagString: Untagged
@@ -483,8 +467,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6601868603842058901}
   - {fileID: 3355299332018998029}
+  - {fileID: 6601868603842058901}
   m_Father: {fileID: 3355299333053837290}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -554,6 +538,23 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5874326654744081424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3355299332434042258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07c6d1c6f93b76419a817936badaa33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseScreen: {fileID: 3355299332018998028}
+  resumeGameButton: {fileID: 3355299331550674997}
+  pauseGameButton: {fileID: 5856515229253040530}
+  backToMainMenuButton: {fileID: 3355299331697253510}
+  gameTimer: {fileID: 0}
 --- !u!1 &3355299332451345216
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,7 +1374,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9180129165559351967, guid: ea1a9b2273e61814a80a06b0cd00d619, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9180129165559351967, guid: ea1a9b2273e61814a80a06b0cd00d619, type: 3}
       propertyPath: m_AnchorMax.x

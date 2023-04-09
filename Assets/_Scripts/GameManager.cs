@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"Is {word} in wordsUsed?: {wordsUsed.Contains(word)}");
 
-        if (isAnagram(word) && !wordsUsed.Contains(word)) //later, check if its an actual word in the dictionary
+        if (word.Length > 2 && !wordsUsed.Contains(word)) //later, check if its an actual word in the dictionary
         {
 
             //true -> calculate points earned and increase totalPoints
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
             Debug.Log($"Points received for word \"{word}\": {pointsReceived} points.");
             Debug.Log($"Total points now: {totalPoints}");
 
-            DisplayAlert(rand.NextDouble() + "Success", $"+{pointsReceived} for {word}", 0.2f, 1f, 60, 0.3f);
+            DisplayAlert(rand.NextDouble() + "Success", $"+{pointsReceived} for {word}", 0.2f, 1f, 100, 0.3f);
 
             return true;
         }
@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
             //false, output error msg --> need to define specific errors later
             Debug.Log($"\"{word}\" is not a valid word/has already been used.");
 
-            DisplayAlert(rand.NextDouble() + "Fail", $"{word} is invalid.", 0.2f, 2f, 60, 0.3f);
+            DisplayAlert(rand.NextDouble() + "Fail", $"{word} is invalid.", 0.2f, 2f, 100, 0.3f);
 
             return false;
         }
@@ -142,9 +142,7 @@ public class GameManager : MonoBehaviour
         GameObject gameAlert = Instantiate(GameAlertPrefab, GameObject.Find("Game Alert").transform);
         gameAlert.name = name;
 
-        //gameAlert.GetComponent<TextMeshProUGUI>().font = Resources.Load<TMP_FontAsset>("Assets/TextMesh Pro/Fonts/Nunito-Bold SDF");
-        //gameAlert.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
-        //gameAlert.GetComponent<TextMeshProUGUI>().fontSize = fontSize;
+        gameAlert.GetComponent<TextMeshProUGUI>().fontSize = fontSize;
         gameAlert.GetComponent<TextMeshProUGUI>().text = text;
 
         gameAlert.AddComponent<GameAlert>();
@@ -166,7 +164,7 @@ public class GameManager : MonoBehaviour
         yield return DisplayAlert("3", "3", 0.7f, 0.1f, 250, 0.3f);
         yield return DisplayAlert("2", "2", 0.7f, 0.1f, 250, 0.3f);
         yield return DisplayAlert("1", "1", 0.7f, 0.1f, 250, 0.3f);
-        yield return DisplayAlert("Start", "Start!", 0.5f, 0.4f, 150, 0.3f);
+        yield return DisplayAlert("Start", "Start!", 0.5f, 0.4f, 250, 0.3f);
 
         GameAlert.transform.transform.SetParent(GameObject.Find("GUICanvas").transform);
         BackgroundBlur.SetActive(false);

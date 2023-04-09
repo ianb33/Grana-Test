@@ -7,6 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
+using UnityEditor;
 using Random = System.Random;
 
 public class GameManager : MonoBehaviour
@@ -136,16 +137,14 @@ public class GameManager : MonoBehaviour
     {
         Vector2 size = new Vector2(Screen.width * 0.8f, Screen.height * 0.1f);
         Vector2 position = GameObject.Find("Game Alert").transform.position;
-        GameObject gameAlert = new GameObject();
-        gameAlert.transform.SetParent(GameObject.Find("Game Alert").transform);
+        
+        GameObject GameAlertPrefab = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Resources/Prefabs/GameAlert.prefab");
+        GameObject gameAlert = Instantiate(GameAlertPrefab, GameObject.Find("Game Alert").transform);
         gameAlert.name = name;
-        gameAlert.AddComponent<RectTransform>();
-        gameAlert.GetComponent<RectTransform>().position = position;
-        gameAlert.GetComponent<RectTransform>().sizeDelta = size;
-        gameAlert.AddComponent<TextMeshProUGUI>();
-        gameAlert.GetComponent<TextMeshProUGUI>().font = Resources.Load<TMP_FontAsset>("Assets/TextMesh Pro/Fonts/Nunito-Bold SDF");
-        gameAlert.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
-        gameAlert.GetComponent<TextMeshProUGUI>().fontSize = fontSize;
+
+        //gameAlert.GetComponent<TextMeshProUGUI>().font = Resources.Load<TMP_FontAsset>("Assets/TextMesh Pro/Fonts/Nunito-Bold SDF");
+        //gameAlert.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
+        //gameAlert.GetComponent<TextMeshProUGUI>().fontSize = fontSize;
         gameAlert.GetComponent<TextMeshProUGUI>().text = text;
 
         gameAlert.AddComponent<GameAlert>();
@@ -164,9 +163,9 @@ public class GameManager : MonoBehaviour
         GameAlert.transform.SetParent(BackgroundBlur.transform);
         GameAlert.transform.SetAsLastSibling();
 
-        yield return DisplayAlert("3", "3", 0.7f, 0.1f, 200, 0.3f);
-        yield return DisplayAlert("2", "2", 0.7f, 0.1f, 200, 0.3f);
-        yield return DisplayAlert("1", "1", 0.7f, 0.1f, 200, 0.3f);
+        yield return DisplayAlert("3", "3", 0.7f, 0.1f, 250, 0.3f);
+        yield return DisplayAlert("2", "2", 0.7f, 0.1f, 250, 0.3f);
+        yield return DisplayAlert("1", "1", 0.7f, 0.1f, 250, 0.3f);
         yield return DisplayAlert("Start", "Start!", 0.5f, 0.4f, 150, 0.3f);
 
         GameAlert.transform.transform.SetParent(GameObject.Find("GUICanvas").transform);

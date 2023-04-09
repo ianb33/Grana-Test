@@ -16,8 +16,8 @@ public class GameAlert : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Color currentColor = thisAlert.GetComponent<TextMeshProUGUI>().color;
-        thisAlert.GetComponent<TextMeshProUGUI>().color = new Color(currentColor.r, currentColor.g, currentColor.b, 0);
+        //Color currentColor = thisAlert.GetComponent<TextMeshProUGUI>().color;
+        //thisAlert.GetComponent<TextMeshProUGUI>().color = new Color(currentColor.r, currentColor.g, currentColor.b, 0);
 
         StartCoroutine(FadeInAndOut());
     }

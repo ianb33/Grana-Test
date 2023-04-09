@@ -143,6 +143,7 @@ public class GameManager : MonoBehaviour
         gameAlert.GetComponent<RectTransform>().position = position;
         gameAlert.GetComponent<RectTransform>().sizeDelta = size;
         gameAlert.AddComponent<TextMeshProUGUI>();
+        gameAlert.GetComponent<TextMeshProUGUI>().font = Resources.Load<TMP_FontAsset>("Assets/TextMesh Pro/Fonts/Nunito-Bold SDF");
         gameAlert.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
         gameAlert.GetComponent<TextMeshProUGUI>().fontSize = fontSize;
         gameAlert.GetComponent<TextMeshProUGUI>().text = text;

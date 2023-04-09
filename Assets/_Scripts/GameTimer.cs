@@ -19,6 +19,7 @@ public class GameTimer : MonoBehaviour
         timer.GetComponent<Image>().color = Color.green;
         duration = gameTime;
         StartCoroutine(UpdateColorCR());
+        sendScoreData();
     }
 
     public IEnumerator UpdateColorCR()

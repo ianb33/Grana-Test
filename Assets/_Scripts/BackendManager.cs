@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -44,14 +45,14 @@ public class BackendManager : MonoBehaviour
         }
     }
 
-    public async Task<string> POSTRequest(string url, WWWForm form, bool requiresAuth = true)
+    public async Task<string> POSTRequest(string url, WWWForm RequestBody, bool requiresAuth = true, [CanBeNull] string accessToken = null)
     {
         // Send the HTTP request asynchronously
-        using (UnityWebRequest webRequest = UnityWebRequest.Post(url, form))
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(url, RequestBody))
         {
             webRequest.SetRequestHeader("Content-Type", "application/json");
-            if(requiresAuth) webRequest.SetRequestHeader("x-access-token",
-                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgxMDc4NzU3LCJleHAiOjE2ODExNjUxNTd9.2U59Xnxg8v1BJqYwyLcKHgJ83Z93GNFesmD0SbIYkFg");
+            if(requiresAuth) webRequest.SetRequestHeader("x-access-token", accessToken);
+            
             UnityWebRequestAsyncOperation asyncOp = webRequest.SendWebRequest();
 
             // Wait for the request to complete

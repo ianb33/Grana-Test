@@ -32,7 +32,7 @@ public class BackendManager : MonoBehaviour
             else
             {
                 // Get the response body
-                string responseBody = webRequest.downloadHandler.text;
+                string responseBody = webRequest.downloadHandler.text;  
 
                 // Do something with the response body
                 Debug.Log($"Successfully Pulled From {url}");
@@ -44,12 +44,14 @@ public class BackendManager : MonoBehaviour
         }
     }
 
-    public async Task<string> POSTRequest(string url, string jsonRequestBody)
+    public async Task<string> POSTRequest(string url, WWWForm form, bool requiresAuth = true)
     {
         // Send the HTTP request asynchronously
-        using (UnityWebRequest webRequest = UnityWebRequest.Post(url, jsonRequestBody))
+        using (UnityWebRequest webRequest = UnityWebRequest.Post(url, form))
         {
             webRequest.SetRequestHeader("Content-Type", "application/json");
+            if(requiresAuth) webRequest.SetRequestHeader("x-access-token",
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjgxMDc4NzU3LCJleHAiOjE2ODExNjUxNTd9.2U59Xnxg8v1BJqYwyLcKHgJ83Z93GNFesmD0SbIYkFg");
             UnityWebRequestAsyncOperation asyncOp = webRequest.SendWebRequest();
 
             // Wait for the request to complete

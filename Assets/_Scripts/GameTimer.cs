@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -63,6 +64,12 @@ public class GameTimer : MonoBehaviour
             , 2);
     }
 
+    private async void sendScoreData()
+    {
+        BackendManager backendManager = this.AddComponent<BackendManager>();
+        string PlayerID = PlayerPrefs.GetString("PlayerID");
+        backendManager.POSTRequest("https://grana.vinniehat.com/api/auth/signup", PlayerID);
+    }
 
 
 }

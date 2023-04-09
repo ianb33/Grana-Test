@@ -15,8 +15,15 @@ public class ResetPlayerPrefs : MonoBehaviour
     // Logs the player into their device-specific account
     private void LogIn()
     {
+        //Set UUID for the specified device
         string PlayerID = SystemInfo.deviceUniqueIdentifier;
         PlayerPrefs.SetString("PlayerID", PlayerID);
-        BackendManager.POSTRequest("", PlayerID);
+        
+        //Format WWWForm to acquire access token
+        WWWForm LoginRequest = new WWWForm();
+        LoginRequest.AddField("username", PlayerID);
+        LoginRequest.AddField("password", PlayerID);
+
+        Debug.Log(BackendManager.POSTRequest("https://grana.vinniehat.com/api/auth/signup", LoginRequest, false));
     }
 }

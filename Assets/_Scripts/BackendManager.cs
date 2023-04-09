@@ -27,7 +27,7 @@ public class BackendManager : MonoBehaviour
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
                 Debug.Log(webRequest.error);
-                Debug.Log($"Failed to Pulled From {url}");
+                Debug.Log($"Failed to GET From {url}");
                 return null;
             }
             else
@@ -36,7 +36,7 @@ public class BackendManager : MonoBehaviour
                 string responseBody = webRequest.downloadHandler.text;  
 
                 // Do something with the response body
-                Debug.Log($"Successfully Pulled From {url}");
+                Debug.Log($"Successfully got data From {url}");
                 Debug.Log(responseBody);
                 return responseBody;
 
@@ -65,7 +65,7 @@ public class BackendManager : MonoBehaviour
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
                 Debug.Log(webRequest.error);
-                Debug.Log($"Failed to Send to {url}");
+                Debug.Log($"Failed to POST to {url}");
                 return null;
             }
             else
@@ -102,7 +102,7 @@ public class BackendManager : MonoBehaviour
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
                 Debug.Log(webRequest.error);
-                Debug.Log($"Failed to Update {url}");
+                Debug.Log($"Failed to PUT to {url}");
                 return null;
             }
             else

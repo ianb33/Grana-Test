@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class ResetPlayerPrefs : MonoBehaviour
@@ -9,21 +10,39 @@ public class ResetPlayerPrefs : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        LogIn();
+        SignUp();
     }
 
     // Logs the player into their device-specific account
-    private void LogIn()
+    private async void SignIn()
     {
         //Set UUID for the specified device
         string PlayerID = SystemInfo.deviceUniqueIdentifier;
         PlayerPrefs.SetString("PlayerID", PlayerID);
         
         //Format WWWForm to acquire access token
-        WWWForm LoginRequest = new WWWForm();
-        LoginRequest.AddField("username", PlayerID);
-        LoginRequest.AddField("password", PlayerID);
+        WWWForm SigninRequest = new WWWForm();
+        SigninRequest.AddField("username", PlayerID);
+        SigninRequest.AddField("password", PlayerID);
 
-        Debug.Log(BackendManager.POSTRequest("https://grana.vinniehat.com/api/auth/signup", LoginRequest, false));
+        string requestResult = await BackendManager.POSTRequest("https://grana.vinniehat.com/api/auth/signup", SigninRequest, false);
+        if(requestResult != null) PlayerPrefs.SetString("AccessToken", requestResult);
+        
+    }
+
+    private async void SignUp()
+    {
+        //Set UUID for the specified device
+        string PlayerID = SystemInfo.deviceUniqueIdentifier;
+        PlayerPrefs.SetString("PlayerID", PlayerID);
+        
+        //Format WWWForm to acquire access token
+        WWWForm SignupRequest = new WWWForm();
+        SignupRequest.AddField("username", PlayerID);
+        SignupRequest.AddField("password", PlayerID);
+        SignupRequest.AddField("email", PlayerID);
+
+        string requestResult = await BackendManager.POSTRequest("https://grana.vinniehat.com/api/auth/signup", SignupRequest, false);
+        if(requestResult != null) PlayerPrefs.SetString("AccessToken", requestResult);
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameTimer : MonoBehaviour
@@ -9,6 +10,8 @@ public class GameTimer : MonoBehaviour
     [SerializeField] public float gameTime;
     [SerializeField] public GameObject timer;
     [SerializeField] public float duration;
+    [SerializeField] private GameManager gameManager;
+
     public float deltaTime = 0.0f;
     private Color endColor = Color.red;
 
@@ -53,14 +56,11 @@ public class GameTimer : MonoBehaviour
 
     private void OnTimerEnd()
     {
-        GameObject BackgroundBlur = Instantiate((GameObject)Resources.Load("Prefabs/BackgroundBlur"), new Vector3(0f, 0f, 0f), Quaternion.identity);
-        BackgroundBlur.transform.SetParent(GameObject.Find("GUICanvas").GetComponent<Transform>());
-        BackgroundBlur.transform.SetAsLastSibling();
-
         //show alert
-        GameObject.Find("GameManager").GetComponent<GameManager>().DisplayAlert("endAlert", "Time's up!", 0.4f, 1f, 100, 2);
+        gameManager.DisplayAlert("endAlert", "Time's up!", 0.4f, 1f, 100, 2);
+
+        AsyncOperation sceneLoadAsync = SceneManager.LoadSceneAsync("WinScreen", LoadSceneMode.Single);
+
+
     }
-
-
-
 }

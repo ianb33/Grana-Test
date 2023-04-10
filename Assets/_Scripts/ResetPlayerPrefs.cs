@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using UnityEngine;
 
 public class ResetPlayerPrefs : MonoBehaviour
@@ -33,16 +34,18 @@ public class ResetPlayerPrefs : MonoBehaviour
     private async void SignUp()
     {
         //Set UUID for the specified device
-        string PlayerID = SystemInfo.deviceUniqueIdentifier;
+        string PlayerID = "piss";
         PlayerPrefs.SetString("PlayerID", PlayerID);
         
-        //Format WWWForm to acquire access token
+        //Format WWWForm to input login info
         WWWForm SignupRequest = new WWWForm();
         SignupRequest.AddField("username", PlayerID);
         SignupRequest.AddField("password", PlayerID);
         SignupRequest.AddField("email", PlayerID);
-
+        
+        //Send the form to the backend API
         string requestResult = await BackendManager.POSTRequest("https://grana.vinniehat.com/api/auth/signup", SignupRequest, false);
-        if(requestResult != null) PlayerPrefs.SetString("AccessToken", requestResult);
     }
+    
 }
+

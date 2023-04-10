@@ -50,7 +50,6 @@ public class BackendManager : MonoBehaviour
         // Send the HTTP request asynchronously
         using (UnityWebRequest webRequest = UnityWebRequest.Post(url, RequestBody))
         {
-            webRequest.SetRequestHeader("Content-Type", "application/json");
             if(requiresAuth) webRequest.SetRequestHeader("x-access-token", accessToken);
             
             UnityWebRequestAsyncOperation asyncOp = webRequest.SendWebRequest();

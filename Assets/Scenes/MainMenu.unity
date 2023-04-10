@@ -669,12 +669,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 120.04
+  m_fontSize: 177.85
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 120.04
+  m_fontSizeMax: 177.85
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -804,12 +804,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 110.71
+  m_fontSize: 177.85
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 110.71
+  m_fontSizeMax: 177.85
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -894,6 +894,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1470163371}
+  - component: {fileID: 1470163373}
+  - component: {fileID: 1470163372}
   m_Layer: 0
   m_Name: Menu Manager
   m_TagString: Untagged
@@ -916,6 +918,31 @@ Transform:
   m_Father: {fileID: 451662822}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1470163372
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470163370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e341365532eb684cad971c7a23045f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1470163373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1470163370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53167d92c0ed31e4db6877915c1be545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BackendManager: {fileID: 1470163372}
 --- !u!224 &1531540181 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3504889954644730045, guid: 6e2b8bf7c8874944694ac3cb4e2427b0, type: 3}
@@ -1197,6 +1224,18 @@ PrefabInstance:
     - target: {fileID: 3504889955287908857, guid: 6e2b8bf7c8874944694ac3cb4e2427b0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504889955339673436, guid: 6e2b8bf7c8874944694ac3cb4e2427b0, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 198.7444
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504889955339673436, guid: 6e2b8bf7c8874944694ac3cb4e2427b0, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 587.7425
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504889955339673436, guid: 6e2b8bf7c8874944694ac3cb4e2427b0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -398.71948
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e2b8bf7c8874944694ac3cb4e2427b0, type: 3}

@@ -13,17 +13,18 @@ using Random = System.Random;
 public class GameManager : MonoBehaviour
 {
     [Header(" Game Details ")]
-    [SerializeField] private int levelID;
+    [SerializeField] public int levelID;
     [SerializeField] public string gameWord;
     [SerializeField] private List<string> anagramsList; //might not be necessary;  we can just check if the inputWord is an anagram of the base word -- also check if its a real word
     [SerializeField] private Dictionary<char, int> pointValues;
 
     [Header("Live Data")]
-    [SerializeField] private int totalPoints;
+    [SerializeField] public int totalPoints;
     [SerializeField] private List<string> wordsUsed;
     [SerializeField] private TextMeshProUGUI scoreBox;
     [SerializeField] private TextMeshProUGUI wordDisplay;
     [SerializeField] private GameObject gameTimer;
+    [SerializeField] private SubmitManager submitManager;
 
     private Random rand = new Random();
 
@@ -73,7 +74,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"Is {word} in wordsUsed?: {wordsUsed.Contains(word)}");
 
-        if (word.Length > 2 && !wordsUsed.Contains(word)) //later, check if its an actual word in the dictionary
+        if (word.Length > 2 && isAnagram(word) && !wordsUsed.Contains(word)) //later, check if its an actual word in the dictionary
         {
 
             //true -> calculate points earned and increase totalPoints
@@ -90,7 +91,8 @@ public class GameManager : MonoBehaviour
             Debug.Log($"Total points now: {totalPoints}");
 
             DisplayAlert(rand.NextDouble() + "Success", $"+{pointsReceived} for {word}", 0.2f, 1f, 100, 0.3f);
-
+            StartCoroutine(submitManager.FadeOutCR(new Color(0.09803922f, .6666667f, 0, 1)));
+            
             return true;
         }
         else
@@ -99,7 +101,8 @@ public class GameManager : MonoBehaviour
             Debug.Log($"\"{word}\" is not a valid word/has already been used.");
 
             DisplayAlert(rand.NextDouble() + "Fail", $"{word} is invalid.", 0.2f, 2f, 100, 0.3f);
-
+            StartCoroutine(submitManager.FadeOutCR(new Color(1, 0, 0.0361886f, 1)));
+            
             return false;
         }
     }
@@ -145,7 +148,7 @@ public class GameManager : MonoBehaviour
         gameAlert.GetComponent<TextMeshProUGUI>().fontSize = fontSize;
         gameAlert.GetComponent<TextMeshProUGUI>().text = text;
 
-        gameAlert.AddComponent<GameAlert>();
+        
         gameAlert.GetComponent<GameAlert>().thisAlert = GameObject.Find(name);
         gameAlert.GetComponent<GameAlert>().duration1 = duration1;
         gameAlert.GetComponent<GameAlert>().duration2 = duration2;
@@ -170,4 +173,5 @@ public class GameManager : MonoBehaviour
         BackgroundBlur.SetActive(false);
         gameTimer.GetComponent<GameTimer>().TogglePause();
     }
+    
 }

@@ -788,6 +788,7 @@ MonoBehaviour:
   scoreBox: {fileID: 978113721}
   wordDisplay: {fileID: 1625348516}
   gameTimer: {fileID: 119105301}
+  submitManager: {fileID: 818513776}
 --- !u!1 &935286573
 GameObject:
   m_ObjectHideFlags: 0

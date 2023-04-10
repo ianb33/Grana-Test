@@ -10,11 +10,20 @@ using UnityEngine.Networking;
 public class BackendManager : MonoBehaviour
 {
 
-    public async Task<string> GETRequest(string url)
+    public async Task<string> GETRequest(string url, bool requiresAuth = true)
     {
+        
+        
         // Send the HTTP request asynchronously
         using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
         {
+            if (requiresAuth)
+            {
+                string accessToken = PlayerPrefs.GetString("accessToken");
+                Debug.Log($"Using token: {accessToken}");
+                webRequest.SetRequestHeader("x-access-token", accessToken);
+            }
+
             UnityWebRequestAsyncOperation asyncOp = webRequest.SendWebRequest();
 
             // Wait for the request to complete
@@ -26,7 +35,7 @@ public class BackendManager : MonoBehaviour
             // Check for errors
             if (webRequest.result != UnityWebRequest.Result.Success)
             {
-                Debug.Log(webRequest.error);
+                Debug.Log($"BackendManager: {webRequest.error}");
                 Debug.Log($"Failed to GET From {url}");
                 return null;
             }
@@ -37,7 +46,7 @@ public class BackendManager : MonoBehaviour
 
                 // Do something with the response body
                 Debug.Log($"Successfully got data From {url}");
-                Debug.Log(responseBody);
+                Debug.Log($"BackendManager: {responseBody}");
                 return responseBody;
 
             }
@@ -45,12 +54,19 @@ public class BackendManager : MonoBehaviour
         }
     }
 
-    public async Task<string> POSTRequest(string url, WWWForm RequestBody, bool requiresAuth = true, [CanBeNull] string accessToken = null)
+    public async Task<string> POSTRequest(string url, WWWForm RequestBody, bool requiresAuth = true)
     {
+        Debug.Log($"RequestBody: {RequestBody}");
+        
         // Send the HTTP request asynchronously
         using (UnityWebRequest webRequest = UnityWebRequest.Post(url, RequestBody))
         {
-            if(requiresAuth) webRequest.SetRequestHeader("x-access-token", accessToken);
+            if (requiresAuth)
+            {
+                string accessToken = PlayerPrefs.GetString("accessToken");
+                Debug.Log($"Using token: {accessToken}");
+                webRequest.SetRequestHeader("x-access-token", accessToken);
+            }
             
             UnityWebRequestAsyncOperation asyncOp = webRequest.SendWebRequest();
 

@@ -10,6 +10,7 @@ public class GameTimer : MonoBehaviour
     [SerializeField] public float gameTime;
     [SerializeField] public GameObject timer;
     [SerializeField] public float duration;
+    
     public float deltaTime = 0.0f;
     private Color endColor = Color.red;
 
@@ -19,7 +20,7 @@ public class GameTimer : MonoBehaviour
         timer.GetComponent<Image>().color = Color.green;
         duration = gameTime;
         StartCoroutine(UpdateColorCR());
-        sendScoreData();
+        
     }
 
     public IEnumerator UpdateColorCR()
@@ -63,14 +64,26 @@ public class GameTimer : MonoBehaviour
         //show alert
         GameObject.Find("GameManager").GetComponent<GameManager>().DisplayAlert("endAlert", "Time's up!", 0.4f, 1f, 200
             , 2);
+        
+        SendScoreData();
     }
 
-    private async void sendScoreData()
+    private async void SendScoreData()
     {
+        Debug.Log("Sending score data...");
         BackendManager backendManager = this.AddComponent<BackendManager>();
-        string PlayerID = PlayerPrefs.GetString("PlayerID");
-        backendManager.POSTRequest("https://grana.vinniehat.com/api/auth/signup", PlayerID);
+        
+        //Set parameters
+        int levelID = GameObject.Find("GameManager").GetComponent<GameManager>().levelID;
+        int score = GameObject.Find("GameManager").GetComponent<GameManager>().totalPoints;
+        
+        //Set up WWWForm with required fields
+        WWWForm SendScoreRequest = new WWWForm();
+        SendScoreRequest.AddField("levelID", levelID);
+        SendScoreRequest.AddField("score", score);
+        
+        string requestResult = await backendManager.POSTRequest("https://grana.vinniehat.com/api/score/submit", SendScoreRequest);
+        
     }
-
-
+    
 }

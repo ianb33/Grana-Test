@@ -10,7 +10,7 @@ using UnityEngine.Networking;
 public class BackendManager : MonoBehaviour
 {
 
-    public async Task<string> GETRequest(string url, bool requiresAuth = true)
+    public static async Task<string> GETRequest(string url, bool requiresAuth = true)
     {
         
         

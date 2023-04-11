@@ -792,6 +792,8 @@ MonoBehaviour:
   scoreBox: {fileID: 978113721}
   wordDisplay: {fileID: 1625348516}
   gameTimer: {fileID: 119105301}
+  submitManager: {fileID: 818513776}
+  GameAlertPrefab: {fileID: 1462953745174269623, guid: 334b71cde7f4d2b45909a8100edc9659, type: 3}
 --- !u!1 &935286573
 GameObject:
   m_ObjectHideFlags: 0

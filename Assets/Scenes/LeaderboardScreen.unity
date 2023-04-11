@@ -617,6 +617,53 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1085994744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1085994745}
+  - component: {fileID: 1085994746}
+  m_Layer: 0
+  m_Name: Leaderboard Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1085994745
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085994744}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1344375746}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1085994746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1085994744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c06cebcce805294f92ae31e47c59a84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LevelID: 2
+  GameWord: 
+  Subtitle: {fileID: 720931574}
 --- !u!1 &1236180997
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +843,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LeaderboardPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 7617542507250123245, guid: a2c93e686198e0141a309fc16f89681b, type: 3}
+      propertyPath: LeaderboardManager
+      value: 
+      objectReference: {fileID: 1085994746}
     - target: {fileID: 7875433406735408895, guid: a2c93e686198e0141a309fc16f89681b, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1.9
@@ -831,6 +882,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1815324489}
+  - {fileID: 1085994745}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -1,14 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using TMPro;
 using UnityEditor;
+using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LeaderboardTable : MonoBehaviour
 {
-    [SerializeField] private int LevelID;
+    [SerializeField] private LeaderboardManager LeaderboardManager;
     [SerializeField] private GameObject LBCellPrefab;
     
     //temporary, will be derived from current player information.
@@ -50,7 +53,7 @@ public class LeaderboardTable : MonoBehaviour
         GenerateList();
     }
 
-    void GenerateList()
+    private void GenerateList()
     {
         //set position and height
         RectTransform contentRect = GameObject.Find("Content").GetComponent<RectTransform>();
@@ -72,6 +75,26 @@ public class LeaderboardTable : MonoBehaviour
                 cell.GetComponent<Image>().color = new Color(1f, 0.55f, 0.2f);
             }
         }
+    }
+    
+    private async void GetLeaderboard()
+    {
+        //Format WWWForm to acquire score data
+        WWWForm ScoresRequest = new WWWForm();
+        ScoresRequest.AddField("levelID", LeaderboardManager.LevelID);
+
+        string requestResult = await BackendManager.GETRequest("https://grana.vinniehat.com/api/auth/signin");
+        if (requestResult != null)
+        {
+            //Deserialize score data and convert to List<tempPlayer>
+            /*var x = JsonConvert.DeserializeObject<SignInModel>(requestResult);
+            PlayerPrefs.SetString("accessToken", x.accessToken);
+            Debug.Log("accessToken: " + x.accessToken);*/
+            playerList = new List<tempPlayer>();
+        }
+        else //failed to load leaderboard;
+        
+        Debug.Log("Completed GetLeaderboard request.");
     }
     
     private class tempPlayer

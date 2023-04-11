@@ -57,15 +57,21 @@ public class GameTimer : MonoBehaviour
 
     private void OnTimerEnd()
     {
-        /* GameObject BackgroundBlur = Instantiate((GameObject)Resources.Load("Prefabs/BackgroundBlur"), new Vector3(0f, 0f, 0f), Quaternion.identity);
-         BackgroundBlur.transform.SetParent(GameObject.Find("GUICanvas").GetComponent<Transform>());
-         BackgroundBlur.transform.SetAsLastSibling();*/
+        GameObject BackgroundBlur = Instantiate((GameObject)Resources.Load("Prefabs/BackgroundBlur"), GameObject.Find("GUICanvas").GetComponent<Transform>());
+         BackgroundBlur.transform.SetSiblingIndex(3);
 
         //show alert
+        StartCoroutine(TimesUpDisplay());
+
+
+    }
+
+    private IEnumerator TimesUpDisplay()
+    {
         GameObject.Find("GameManager").GetComponent<GameManager>().DisplayAlert("endAlert", "Time's up!", 0.4f, 1f, 200, 2);
-
+        yield return new WaitForSeconds(3);
+        
         AsyncOperation sceneLoadAsync = SceneManager.LoadSceneAsync("WinScreen", LoadSceneMode.Single);
-
         sceneLoadAsync.completed += operation =>
         {
             GameObject endScreenManager = GameObject.Find("End Screen Manager");

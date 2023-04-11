@@ -14,11 +14,17 @@ public class PauseScreenManager : MonoBehaviour
     [SerializeField] private Button backToMainMenuButton;
     [SerializeField] private Button backToLevelsButton;
     [SerializeField] private GameTimer gameTimer;
+    [SerializeField] private Button leaderBoardButton;
+
 
     private bool paused = false;
 
     private void Start()
     {
+        if (leaderBoardButton != null)
+        {
+            leaderBoardButton.onClick.AddListener(() => LeaderBoardButtonClicked());
+        }
         if (backToLevelsButton != null)
         {
             backToLevelsButton.onClick.AddListener(() => BackToLevelsClicked());
@@ -64,5 +70,11 @@ public class PauseScreenManager : MonoBehaviour
     public void BackToLevelsClicked()
     {
         SceneManager.LoadScene("LevelsScreen");
+    }
+
+    public void LeaderBoardButtonClicked()
+    {
+        Debug.Log("Leaderboard Button Pressed");
+        SceneManager.LoadScene("LeaderboardScreen");
     }
 }

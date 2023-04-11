@@ -32,6 +32,8 @@ public class WinScreenManager : MonoBehaviour
         this.finalScore = finalScore;
         this.highScore = highScore;
 
+        wordsUsed.Remove(gameWord);
+
         wordsFound = wordsUsed.Count;
 
         wordsUsed.Aggregate("", (max, cur) => max.Length > cur.Length ? max : cur);

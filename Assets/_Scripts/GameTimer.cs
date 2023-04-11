@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,12 +14,19 @@ public class GameTimer : MonoBehaviour
     [SerializeField] public float duration;
     [SerializeField] private GameManager gameManager;
 
+    public bool debugMode;
     public float deltaTime = 0.0f;
     private Color endColor = Color.red;
 
     // Start is called before the first frame update
     void Start()
     {
+        if (debugMode)
+        {
+            gameTime = 2;
+            duration = 2;
+        }
+
         timer.GetComponent<Image>().color = Color.green;
         duration = gameTime;
         StartCoroutine(UpdateColorCR());
@@ -76,7 +84,7 @@ public class GameTimer : MonoBehaviour
         {
             GameObject endScreenManager = GameObject.Find("End Screen Manager");
 
-            endScreenManager.GetComponent<WinScreenManager>().SetScreenData(gameManager.GetGameWord(), gameManager.GetFinalScore(), 0, gameManager.GetWordsUsed());
+            endScreenManager.GetComponent<WinScreenManager>().SetScreenData(gameManager.GetGameWord(), gameManager.GetFinalScore(), 0, gameManager.GetWordsUsed(), gameManager.GetLevelID());
         };
     }
 

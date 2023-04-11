@@ -62,7 +62,7 @@ public class GameTimer : MonoBehaviour
          BackgroundBlur.transform.SetAsLastSibling();*/
 
         //show alert
-        GameObject.Find("GameManager").GetComponent<GameManager>().DisplayAlert("endAlert", "Time's up!", 0.4f, 1f, 100, 2);
+        GameObject.Find("GameManager").GetComponent<GameManager>().DisplayAlert("endAlert", "Time's up!", 0.4f, 1f, 200, 2);
 
         AsyncOperation sceneLoadAsync = SceneManager.LoadSceneAsync("WinScreen", LoadSceneMode.Single);
 

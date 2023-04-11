@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI scoreBox;
     [SerializeField] private TextMeshProUGUI wordDisplay;
     [SerializeField] private GameObject gameTimer;
+    [SerializeField] private SubmitManager submitManager;
+
+    [SerializeField] private GameObject GameAlertPrefab;
 
     private Random rand = new Random();
 
@@ -72,7 +75,7 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"Is {word} in wordsUsed?: {wordsUsed.Contains(word)}");
 
-        if (isAnagram(word) && !wordsUsed.Contains(word)) //later, check if its an actual word in the dictionary
+        if (word.Length > 2 && isAnagram(word) && !wordsUsed.Contains(word)) //later, check if its an actual word in the dictionary
         {
 
             //true -> calculate points earned and increase totalPoints
@@ -88,7 +91,8 @@ public class GameManager : MonoBehaviour
             Debug.Log($"Points received for word \"{word}\": {pointsReceived} points.");
             Debug.Log($"Total points now: {totalPoints}");
 
-            DisplayAlert(rand.NextDouble() + "Success", $"+{pointsReceived} for {word}", 0.2f, 1f, 60, 0.3f);
+            DisplayAlert(rand.NextDouble() + "Success", $"+{pointsReceived} for {word}", 0.2f, 1f, 100, 0.3f);
+            StartCoroutine(submitManager.FadeOutCR(new Color(0.09803922f, .6666667f, 0, 1)));
 
             return true;
         }
@@ -97,7 +101,8 @@ public class GameManager : MonoBehaviour
             //false, output error msg --> need to define specific errors later
             Debug.Log($"\"{word}\" is not a valid word/has already been used.");
 
-            DisplayAlert(rand.NextDouble() + "Fail", $"{word} is invalid.", 0.2f, 2f, 60, 0.3f);
+            DisplayAlert(rand.NextDouble() + "Fail", $"{word} is invalid.", 0.2f, 2f, 100, 0.3f);
+            StartCoroutine(submitManager.FadeOutCR(new Color(1, 0, 0.0361886f, 1)));
 
             return false;
         }
@@ -134,21 +139,15 @@ public class GameManager : MonoBehaviour
 
     public WaitForSeconds DisplayAlert(String name, String text, float duration1, float duration2, int fontSize, float inBetween = 0)
     {
-        Vector2 size = new Vector2(Screen.width * 0.8f, Screen.height * 0.1f);
-        Vector2 position = GameObject.Find("Game Alert").transform.position;
-        GameObject gameAlert = new GameObject();
-        gameAlert.transform.SetParent(GameObject.Find("Game Alert").transform);
+        //Vector2 size = new Vector2(Screen.width * 0.8f, Screen.height * 0.1f);
+        //Vector2 position = GameObject.Find("Game Alert").transform.position;
+        
+        GameObject gameAlert = Instantiate(GameAlertPrefab, GameObject.Find("Game Alert").transform);
         gameAlert.name = name;
-        gameAlert.AddComponent<RectTransform>();
-        gameAlert.GetComponent<RectTransform>().position = position;
-        gameAlert.GetComponent<RectTransform>().sizeDelta = size;
-        gameAlert.AddComponent<TextMeshProUGUI>();
-        gameAlert.GetComponent<TextMeshProUGUI>().font = Resources.Load<TMP_FontAsset>("Assets/TextMesh Pro/Fonts/Nunito-Bold SDF");
-        gameAlert.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
+        
         gameAlert.GetComponent<TextMeshProUGUI>().fontSize = fontSize;
         gameAlert.GetComponent<TextMeshProUGUI>().text = text;
 
-        gameAlert.AddComponent<GameAlert>();
         gameAlert.GetComponent<GameAlert>().thisAlert = GameObject.Find(name);
         gameAlert.GetComponent<GameAlert>().duration1 = duration1;
         gameAlert.GetComponent<GameAlert>().duration2 = duration2;
@@ -164,10 +163,10 @@ public class GameManager : MonoBehaviour
         GameAlert.transform.SetParent(BackgroundBlur.transform);
         GameAlert.transform.SetAsLastSibling();
 
-        yield return DisplayAlert("3", "3", 0.7f, 0.1f, 200, 0.3f);
-        yield return DisplayAlert("2", "2", 0.7f, 0.1f, 200, 0.3f);
-        yield return DisplayAlert("1", "1", 0.7f, 0.1f, 200, 0.3f);
-        yield return DisplayAlert("Start", "Start!", 0.5f, 0.4f, 150, 0.3f);
+        yield return DisplayAlert("3", "3", 0.7f, 0.1f, 250, 0.3f);
+        yield return DisplayAlert("2", "2", 0.7f, 0.1f, 250, 0.3f);
+        yield return DisplayAlert("1", "1", 0.7f, 0.1f, 250, 0.3f);
+        yield return DisplayAlert("Start", "Start!", 0.5f, 0.4f, 250, 0.3f);
 
         GameAlert.transform.transform.SetParent(GameObject.Find("GUICanvas").transform);
         BackgroundBlur.SetActive(false);

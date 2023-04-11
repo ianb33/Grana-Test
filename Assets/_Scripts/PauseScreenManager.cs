@@ -16,8 +16,7 @@ public class PauseScreenManager : MonoBehaviour
     [SerializeField] private GameTimer gameTimer;
     [SerializeField] private Button leaderBoardButton;
 
-
-    private bool paused = false;
+    [SerializeField] private TransitionManager transitionManager;
 
     private void Start()
     {
@@ -64,17 +63,16 @@ public class PauseScreenManager : MonoBehaviour
 
     public void BackToMainMenuButtonClicked()
     {
-        SceneManager.LoadScene("MainMenu");
+        StartCoroutine(transitionManager.StartSceneTransition("MainMenu"));
     }
 
     public void BackToLevelsClicked()
     {
-        SceneManager.LoadScene("LevelsScreen");
+        StartCoroutine(transitionManager.StartSceneTransition("LevelsScreen"));
     }
 
     public void LeaderBoardButtonClicked()
     {
-        Debug.Log("Leaderboard Button Pressed");
-        SceneManager.LoadScene("LeaderboardScreen");
+        StartCoroutine(transitionManager.StartSceneTransition("LeaderboardScreen"));
     }
 }

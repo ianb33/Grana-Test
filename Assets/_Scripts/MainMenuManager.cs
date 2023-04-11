@@ -11,6 +11,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private Button tutorialButton;
     [SerializeField] private Button backButton;
 
+    [SerializeField] private TransitionManager transitionManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,16 +22,16 @@ public class MainMenuManager : MonoBehaviour
 
     public void PlayButtonClicked()
     {
-        SceneManager.LoadScene("LevelsScreen");
+        StartCoroutine(transitionManager.StartSceneTransition("LevelsScreen"));
     }
 
     public void TutorialButtonClicked()
     {
-        SceneManager.LoadScene("TutorialScreen");
+        StartCoroutine(transitionManager.StartSceneTransition("TutorialScreen"));
     }
 
     public void BackButtonClicked()
     {
-        SceneManager.LoadScene("MainMenu");
+        StartCoroutine(transitionManager.StartSceneTransition("MainMenu"));
     }
 }

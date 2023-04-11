@@ -11,7 +11,7 @@ using Random = System.Random;
 
 public class GameManager : MonoBehaviour
 {
-    [Header(" Game Details ")]
+    [Header("Game Details")]
     [SerializeField] private int levelID;
     [SerializeField] private string gameWord;
     [SerializeField] private List<string> anagramsList; //might not be necessary;  we can just check if the inputWord is an anagram of the base word -- also check if its a real word
@@ -25,6 +25,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameTimer;
     [SerializeField] private SubmitManager submitManager;
 
+    [Header("Animation Stuffs")]
+    [SerializeField] private int transitionDuration;
+
     [SerializeField] private GameObject GameAlertPrefab;
 
     private Random rand = new Random();
@@ -34,6 +37,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     IEnumerator Start()
     {
+        yield return new WaitForSeconds(transitionDuration);
         yield return Countdown();
         InitializeGame();
         yield return new WaitForEndOfFrame();
@@ -141,10 +145,10 @@ public class GameManager : MonoBehaviour
     {
         //Vector2 size = new Vector2(Screen.width * 0.8f, Screen.height * 0.1f);
         //Vector2 position = GameObject.Find("Game Alert").transform.position;
-        
+
         GameObject gameAlert = Instantiate(GameAlertPrefab, GameObject.Find("Game Alert").transform);
         gameAlert.name = name;
-        
+
         gameAlert.GetComponent<TextMeshProUGUI>().fontSize = fontSize;
         gameAlert.GetComponent<TextMeshProUGUI>().text = text;
 

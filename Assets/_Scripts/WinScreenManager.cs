@@ -38,7 +38,10 @@ public class WinScreenManager : MonoBehaviour
 
         wordsUsed.Aggregate("", (max, cur) => max.Length > cur.Length ? max : cur);
 
-        longestWord = wordsUsed[0];
+        if (wordsUsed.Count > 0)
+        {
+            longestWord = wordsUsed[0];
+        }
     }
 
     public void InitializeScreenData()

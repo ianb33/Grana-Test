@@ -309,7 +309,6 @@ MonoBehaviour:
   - {fileID: 1988239688}
   - {fileID: 1853238858}
   - {fileID: 721956583}
-  transitionManager: {fileID: 511967644}
 --- !u!114 &71408958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1066,6 +1065,10 @@ PrefabInstance:
     - target: {fileID: 7085288564648935056, guid: 4b12ac1f01fd9fc40a37da9964136bd0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8635199349716589131, guid: 4b12ac1f01fd9fc40a37da9964136bd0, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b12ac1f01fd9fc40a37da9964136bd0, type: 3}

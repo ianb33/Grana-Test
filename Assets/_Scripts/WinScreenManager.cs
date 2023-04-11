@@ -6,11 +6,17 @@ using UnityEngine;
 
 public class WinScreenManager : MonoBehaviour
 {
+    [SerializeField] private int levelID;
     [SerializeField] private TextMeshProUGUI gameWordText;
     [SerializeField] private TextMeshProUGUI currentScoreText;
     [SerializeField] private TextMeshProUGUI highScoreText;
     [SerializeField] private TextMeshProUGUI longestWordText;
     [SerializeField] private TextMeshProUGUI wordsFoundText;
+    [SerializeField] private TextMeshProUGUI definitionText;
+    [SerializeField] private TextMeshProUGUI partOfSpeechText;
+
+
+    [SerializeField] private TemporaryDefinitionHolder TemporaryDefinitionHolder;
 
     private string gameWord;
     private int finalScore;
@@ -26,11 +32,12 @@ public class WinScreenManager : MonoBehaviour
         InitializeScreenData();
     }
 
-    public void SetScreenData(string gameWord, int finalScore, int highScore, List<string> wordsUsed)
+    public void SetScreenData(string gameWord, int finalScore, int highScore, List<string> wordsUsed, int levelID)
     {
         this.gameWord = gameWord;
         this.finalScore = finalScore;
         this.highScore = highScore;
+        this.levelID = levelID;
 
         wordsUsed.Remove(gameWord);
 
@@ -50,5 +57,7 @@ public class WinScreenManager : MonoBehaviour
         currentScoreText.text = finalScore.ToString();
         longestWordText.text += longestWord;
         wordsFoundText.text += wordsFound.ToString();
+
+        definitionText.text = TemporaryDefinitionHolder.TemporaryDefinitions[levelID - 1][0];
     }
 }

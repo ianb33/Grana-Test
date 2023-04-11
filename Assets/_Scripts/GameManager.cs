@@ -196,4 +196,9 @@ public class GameManager : MonoBehaviour
     {
         return wordsUsed;
     }
+
+    public int GetLevelID()
+    {
+        return levelID;
+    }
 }

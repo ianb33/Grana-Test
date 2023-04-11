@@ -440,6 +440,10 @@ PrefabInstance:
       propertyPath: gameTime
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 347017372723658695, guid: 7dfc5ca9462aa5b498fb25118401273a, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 913902090}
     - target: {fileID: 4516835428915280029, guid: 7dfc5ca9462aa5b498fb25118401273a, type: 3}
       propertyPath: m_Name
       value: GameTimer
@@ -780,7 +784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51fb0973ebd6724398df5a883bfd515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelID: 0
+  levelID: 1
   gameWord: 
   anagramsList: []
   totalPoints: 0
@@ -1755,11 +1759,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6601868603842058901, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 197.9268
+      value: 156.0748
       objectReference: {fileID: 0}
     - target: {fileID: 6601868603842058901, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 195.9473
+      value: 154.5139
       objectReference: {fileID: 0}
     - target: {fileID: 6601868603842058901, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1767,7 +1771,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6601868603842058901, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -211
+      value: -213
       objectReference: {fileID: 0}
     - target: {fileID: 8097239474054778727, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
       propertyPath: m_AnchoredPosition.x

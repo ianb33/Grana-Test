@@ -20,13 +20,17 @@ public class WinScreenManager : MonoBehaviour
 
     private string[] wordsUsed;
 
-
+    private IEnumerator Start()
+    {
+        yield return null;
+        InitializeScreenData();
+    }
 
     public void SetScreenData(string gameWord, int finalScore, int highScore, List<string> wordsUsed)
     {
-        gameWord = this.gameWord;
-        finalScore = this.finalScore;
-        highScore = this.highScore;
+        this.gameWord = gameWord;
+        this.finalScore = finalScore;
+        this.highScore = highScore;
 
         wordsFound = wordsUsed.Count;
 
@@ -35,4 +39,11 @@ public class WinScreenManager : MonoBehaviour
         longestWord = wordsUsed[0];
     }
 
+    public void InitializeScreenData()
+    {
+        gameWordText.text += gameWord;
+        currentScoreText.text = finalScore.ToString();
+        longestWordText.text += longestWord;
+        wordsFoundText.text += wordsFound.ToString();
+    }
 }

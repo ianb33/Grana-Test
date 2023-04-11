@@ -66,7 +66,15 @@ public class GameTimer : MonoBehaviour
 
         AsyncOperation sceneLoadAsync = SceneManager.LoadSceneAsync("WinScreen", LoadSceneMode.Single);
 
+        sceneLoadAsync.completed += operation =>
+        {
+            GameObject endScreenManager = GameObject.Find("End Screen Manager");
+
+            endScreenManager.GetComponent<WinScreenManager>().SetScreenData(gameManager.GetGameWord(), gameManager.GetFinalScore(), 0, gameManager.GetWordsUsed());
+        };
     }
+
+
 
     /* private async void SendScoreData()
      {

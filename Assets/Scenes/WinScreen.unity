@@ -1083,11 +1083,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eba03b47afda7d149b39be7a9f053a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameWordText: {fileID: 0}
-  currentScoreText: {fileID: 0}
-  highScoreText: {fileID: 0}
-  longestWordText: {fileID: 0}
-  wordsFoundText: {fileID: 0}
+  gameWordText: {fileID: 1602201881}
+  currentScoreText: {fileID: 286611}
+  highScoreText: {fileID: 1870764513}
+  longestWordText: {fileID: 20806916}
+  wordsFoundText: {fileID: 1433321287}
 --- !u!1 &778784803
 GameObject:
   m_ObjectHideFlags: 0
@@ -2323,7 +2323,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: For SFHDJFD
+  m_text: 'For '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: da0ae186a76ac204db25ea04f8f10dc0, type: 2}
   m_sharedMaterial: {fileID: -423223964951452221, guid: da0ae186a76ac204db25ea04f8f10dc0, type: 2}

@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 {
     [Header(" Game Details ")]
     [SerializeField] private int levelID;
-    [SerializeField] public string gameWord;
+    [SerializeField] private string gameWord;
     [SerializeField] private List<string> anagramsList; //might not be necessary;  we can just check if the inputWord is an anagram of the base word -- also check if its a real word
     [SerializeField] private Dictionary<char, int> pointValues;
 
@@ -188,4 +188,9 @@ public class GameManager : MonoBehaviour
     {
         return highScore;
     }*/
+
+    public List<string> GetWordsUsed()
+    {
+        return wordsUsed;
+    }
 }

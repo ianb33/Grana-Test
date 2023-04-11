@@ -556,6 +556,22 @@ PrefabInstance:
       propertyPath: backToMainMenuButton
       value: 
       objectReference: {fileID: 1165646177}
+    - target: {fileID: 6601868603842058901, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 168.1397
+      objectReference: {fileID: 0}
+    - target: {fileID: 6601868603842058901, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 166.4582
+      objectReference: {fileID: 0}
+    - target: {fileID: 6601868603842058901, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 150.89325
+      objectReference: {fileID: 0}
+    - target: {fileID: 6601868603842058901, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -164.7544
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
 --- !u!1 &787717496

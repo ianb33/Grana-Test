@@ -7,7 +7,6 @@ using Newtonsoft.Json;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,14 +20,43 @@ public class LeaderboardTable : MonoBehaviour
     [SerializeField] private int currentPlayerIndex;
 
     //List of players and their scores will be sorted before being pulled from the backend.
-    [SerializeField] private List<tempPlayer> playerList = new List<tempPlayer>();
+    [SerializeField]
+    private List<tempPlayer> playerList = new List<tempPlayer>
+    {
+        new tempPlayer{ playerName = "aaaaaaa", highScore = 1400},
+        new tempPlayer{ playerName = "bbbbbbb", highScore = 1300},
+        new tempPlayer{ playerName = "ccccccc", highScore = 1200},
+        new tempPlayer{ playerName = "ddddddd", highScore = 1100},
+        new tempPlayer{ playerName = "eeeeeee", highScore = 1000},
+        new tempPlayer{ playerName = "fffffff", highScore = 900},
+        new tempPlayer{ playerName = "ggggggg", highScore = 800},
+        new tempPlayer{ playerName = "hhhhhhh", highScore = 700},
+        new tempPlayer{ playerName = "iiiiiii", highScore = 600},
+        new tempPlayer{ playerName = "jjjjjjj", highScore = 500},
+        new tempPlayer{ playerName = "aaaaaaa", highScore = 400},
+        new tempPlayer{ playerName = "bbbbbbb", highScore = 300},
+        new tempPlayer{ playerName = "ccccccc", highScore = 200},
+        new tempPlayer{ playerName = "ddddddd", highScore = 100},
+        new tempPlayer{ playerName = "eeeeeee", highScore = 90},
+        new tempPlayer{ playerName = "fffffff", highScore = 80},
+        new tempPlayer{ playerName = "ggggggg", highScore = 70},
+        new tempPlayer{ playerName = "hhhhhhh", highScore = 60},
+        new tempPlayer{ playerName = "iiiiiii", highScore = 50},
+        new tempPlayer{ playerName = "jjjjjjj", highScore = 40},
+        new tempPlayer{ playerName = "eeeeeee", highScore = 90},
+        new tempPlayer{ playerName = "fffffff", highScore = 80},
+        new tempPlayer{ playerName = "ggggggg", highScore = 70},
+        new tempPlayer{ playerName = "hhhhhhh", highScore = 60},
+        new tempPlayer{ playerName = "iiiiiii", highScore = 50},
+        new tempPlayer{ playerName = "jjjjjjj", highScore = 40},
+    };
 
     private void Start()
     {
         GetLeaderboard();
     }
 
-   
+
     private async void GetLeaderboard()
     {
         //Format WWWForm to acquire score data
@@ -47,11 +75,10 @@ public class LeaderboardTable : MonoBehaviour
                     playerName = player.user.username,
                     playerUUID = player.user.username,
                     highScore = player.score
-                };
-                p.SetDisplayName();
+                });
 
-                playerList.Add(p);
-                
+
+
             }
             
             //Sort list by high score
@@ -62,22 +89,25 @@ public class LeaderboardTable : MonoBehaviour
             GenerateList();
         }
         else //failed to load leaderboard;
-        
-        Debug.Log("Finished running GetLeaderboard request.");
+
+            Debug.Log("Finished running GetLeaderboard request.");
     }
-    
+
     private void GenerateList()
     {
         //set position and height
         RectTransform contentRect = GameObject.Find("Content").GetComponent<RectTransform>();
-        contentRect.sizeDelta = new Vector2(contentRect.sizeDelta.x, Screen.width / 8 * playerList.Count);
-        contentRect.position = new Vector2(contentRect.position.x, -Screen.width / 8 * currentPlayerIndex);
-        
+        int top = currentPlayerIndex * 70;
+        int bottom = (playerList.Count - currentPlayerIndex) * -70;
+
+        contentRect.offsetMax = new Vector2(contentRect.offsetMax.x, top);
+        contentRect.offsetMin = new Vector2(contentRect.offsetMin.x, bottom);
+
 
         for (int i = 0; i < playerList.Count; i++)
         {
             GameObject cell = Instantiate(LBCellPrefab, GameObject.Find("Content").transform);
-            cell.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i+1) + "  " + playerList[i].displayName;
+            cell.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i + 1) + "  " + playerList[i].playerName;
             cell.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = playerList[i].highScore + "";
 
             if (i == currentPlayerIndex)
@@ -86,20 +116,6 @@ public class LeaderboardTable : MonoBehaviour
             }
         }
     }
-
-    private void GetPlayerIndex()
-    {
-        string UUID = PlayerPrefs.GetString("PlayerID");
-        for (int i = 0; i < playerList.Count; i++)
-        {
-            if (playerList[i].playerUUID == UUID)
-            {
-                currentPlayerIndex = i;
-                break;
-            }
-        }
-    }
-    
     private class tempPlayer
     {
         public string displayName = "";

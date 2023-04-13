@@ -61,6 +61,7 @@ public class WinScreenManager : MonoBehaviour
         wordsFoundText.text += wordsFound.ToString();
 
         definitionText.text = TemporaryDefinitionHolder.TemporaryDefinitions[levelID - 1][0];
+        partOfSpeechText.text = TemporaryDefinitionHolder.TemporaryDefinitions[levelID - 1][1];
     }
     
     private async void SendScoreData()

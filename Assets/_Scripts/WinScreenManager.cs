@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class WinScreenManager : MonoBehaviour
@@ -15,6 +16,7 @@ public class WinScreenManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI wordsFoundText;
     [SerializeField] private TextMeshProUGUI definitionText;
     [SerializeField] private TextMeshProUGUI partOfSpeechText;
+    [SerializeField] private TextMeshProUGUI exampleText;
 
 
     [SerializeField] private TemporaryDefinitionHolder TemporaryDefinitionHolder;
@@ -59,22 +61,23 @@ public class WinScreenManager : MonoBehaviour
         currentScoreText.text = finalScore.ToString();
         longestWordText.text += longestWord;
         wordsFoundText.text += wordsFound.ToString();
+        exampleText.text += gameWord;
 
         definitionText.text = TemporaryDefinitionHolder.TemporaryDefinitions[levelID - 1][0];
         partOfSpeechText.text = TemporaryDefinitionHolder.TemporaryDefinitions[levelID - 1][1];
     }
-    
+
     private async void SendScoreData()
-     {
-         Debug.Log("Sending score data...");
-         BackendManager backendManager = this.AddComponent<BackendManager>();
+    {
+        Debug.Log("Sending score data...");
+        BackendManager backendManager = this.AddComponent<BackendManager>();
 
-         //Set up WWWForm with required fields
-         WWWForm SendScoreRequest = new WWWForm();
-         SendScoreRequest.AddField("levelID", levelID);
-         SendScoreRequest.AddField("score", finalScore);
+        //Set up WWWForm with required fields
+        WWWForm SendScoreRequest = new WWWForm();
+        SendScoreRequest.AddField("levelID", levelID);
+        SendScoreRequest.AddField("score", finalScore);
 
-         string requestResult = await backendManager.POSTRequest("https://grana.vinniehat.com/api/score/submit", SendScoreRequest);
+        string requestResult = await backendManager.POSTRequest("https://grana.vinniehat.com/api/score/submit", SendScoreRequest);
 
-     }
+    }
 }

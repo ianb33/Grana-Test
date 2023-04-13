@@ -14,7 +14,7 @@ public class LeaderboardTable : MonoBehaviour
 {
     [SerializeField] private LeaderboardManager LeaderboardManager;
     [SerializeField] private GameObject LBCellPrefab;
-    
+
 
     //temporary, will be derived from current player information.
     [SerializeField] private int currentPlayerIndex;
@@ -75,12 +75,12 @@ public class LeaderboardTable : MonoBehaviour
                     playerName = player.user.username,
                     playerUUID = player.user.username,
                     highScore = player.score
-                });
+                };
 
 
 
             }
-            
+
             //Sort list by high score
             playerList = playerList.OrderByDescending(o => o.highScore).ToList();
 
@@ -91,6 +91,19 @@ public class LeaderboardTable : MonoBehaviour
         else //failed to load leaderboard;
 
             Debug.Log("Finished running GetLeaderboard request.");
+    }
+
+    private void GetPlayerIndex()
+    {
+        string UUID = PlayerPrefs.GetString("PlayerID");
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            if (playerList[i].playerUUID == UUID)
+            {
+                currentPlayerIndex = i;
+                break;
+            }
+        }
     }
 
     private void GenerateList()
@@ -122,7 +135,7 @@ public class LeaderboardTable : MonoBehaviour
         public string playerName { get; set; }
         public int highScore { get; set; }
         public string playerUUID { get; set; }
-        
+
         public void SetDisplayName()
         {
             displayName = "User" + playerName.Substring(0, 4);

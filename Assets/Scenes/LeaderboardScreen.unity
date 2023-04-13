@@ -662,7 +662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c06cebcce805294f92ae31e47c59a84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelID: 2
+  LevelID: 1
   GameWord: 
   Subtitle: {fileID: 720931574}
 --- !u!1001 &1135048238
@@ -921,6 +921,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -7.663391
       objectReference: {fileID: 0}
+    - target: {fileID: 4768292239326093273, guid: a2c93e686198e0141a309fc16f89681b, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768292239326093273, guid: a2c93e686198e0141a309fc16f89681b, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768292239326093273, guid: a2c93e686198e0141a309fc16f89681b, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 2731.4998
+      objectReference: {fileID: 0}
+    - target: {fileID: 4768292239326093273, guid: a2c93e686198e0141a309fc16f89681b, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -345.7505
+      objectReference: {fileID: 0}
     - target: {fileID: 6826634808420507321, guid: a2c93e686198e0141a309fc16f89681b, type: 3}
       propertyPath: m_Name
       value: LeaderboardPrefab
@@ -929,6 +945,10 @@ PrefabInstance:
       propertyPath: LeaderboardManager
       value: 
       objectReference: {fileID: 1085994746}
+    - target: {fileID: 7617542507250123245, guid: a2c93e686198e0141a309fc16f89681b, type: 3}
+      propertyPath: currentPlayerIndex
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7875433406735408895, guid: a2c93e686198e0141a309fc16f89681b, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 1.9

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TMPro;
@@ -14,6 +15,7 @@ public class LeaderboardTable : MonoBehaviour
 {
     [SerializeField] private LeaderboardManager LeaderboardManager;
     [SerializeField] private GameObject LBCellPrefab;
+    
 
     //temporary, will be derived from current player information.
     [SerializeField] private int currentPlayerIndex;
@@ -40,16 +42,22 @@ public class LeaderboardTable : MonoBehaviour
             var x = JsonConvert.DeserializeObject<List<LeaderboardModel>>(requestResult);
             foreach (LeaderboardModel player in x)
             {
-                playerList.Add(new tempPlayer
+                tempPlayer p = new tempPlayer
                 {
                     playerName = player.user.username,
+                    playerUUID = player.user.username,
                     highScore = player.score
-                });
-                
-                
+                };
+                p.SetDisplayName();
+
+                playerList.Add(p);
                 
             }
+            
+            //Sort list by high score
+            playerList = playerList.OrderByDescending(o => o.highScore).ToList();
 
+            GetPlayerIndex();
             //Only generate list if leaderboard was successfully loaded.
             GenerateList();
         }
@@ -69,7 +77,7 @@ public class LeaderboardTable : MonoBehaviour
         for (int i = 0; i < playerList.Count; i++)
         {
             GameObject cell = Instantiate(LBCellPrefab, GameObject.Find("Content").transform);
-            cell.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i+1) + "  " + playerList[i].playerName;
+            cell.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i+1) + "  " + playerList[i].displayName;
             cell.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = playerList[i].highScore + "";
 
             if (i == currentPlayerIndex)
@@ -81,12 +89,27 @@ public class LeaderboardTable : MonoBehaviour
 
     private void GetPlayerIndex()
     {
-        
+        string UUID = PlayerPrefs.GetString("PlayerID");
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            if (playerList[i].playerUUID == UUID)
+            {
+                currentPlayerIndex = i;
+                break;
+            }
+        }
     }
     
     private class tempPlayer
     {
+        public string displayName = "";
         public string playerName { get; set; }
         public int highScore { get; set; }
+        public string playerUUID { get; set; }
+        
+        public void SetDisplayName()
+        {
+            displayName = "User" + playerName.Substring(0, 4);
+        }
     }
 }

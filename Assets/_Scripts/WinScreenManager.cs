@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WinScreenManager : MonoBehaviour
@@ -28,6 +29,7 @@ public class WinScreenManager : MonoBehaviour
 
     private IEnumerator Start()
     {
+        SendScoreData();
         yield return null;
         InitializeScreenData();
     }
@@ -60,4 +62,18 @@ public class WinScreenManager : MonoBehaviour
 
         definitionText.text = TemporaryDefinitionHolder.TemporaryDefinitions[levelID - 1][0];
     }
+    
+    private async void SendScoreData()
+     {
+         Debug.Log("Sending score data...");
+         BackendManager backendManager = this.AddComponent<BackendManager>();
+
+         //Set up WWWForm with required fields
+         WWWForm SendScoreRequest = new WWWForm();
+         SendScoreRequest.AddField("levelID", levelID);
+         SendScoreRequest.AddField("score", finalScore);
+
+         string requestResult = await backendManager.POSTRequest("https://grana.vinniehat.com/api/score/submit", SendScoreRequest);
+
+     }
 }

@@ -3,8 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="d1f97619-50eb-42f9-b0b4-effc281b1e00" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Grana-Test/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Grana-Test/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/LeaderboardModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/LeaderboardModel.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/LeaderboardScreen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LeaderboardScreen.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/GameTimer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/GameTimer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scripts/LeaderboardTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/LeaderboardTable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/ResetPlayerPrefs.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/ResetPlayerPrefs.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/WinScreenManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/WinScreenManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -71,7 +75,7 @@
       <option name="presentableId" value="Default" />
       <updated>1679159755820</updated>
       <workItem from="1679159764520" duration="24000" />
-      <workItem from="1681310966163" duration="2613000" />
+      <workItem from="1681310966163" duration="5530000" />
     </task>
     <servers />
   </component>

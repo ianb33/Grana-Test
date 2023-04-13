@@ -14,6 +14,7 @@ public class LeaderboardTable : MonoBehaviour
 {
     [SerializeField] private LeaderboardManager LeaderboardManager;
     [SerializeField] private GameObject LBCellPrefab;
+    [SerializeField] private GameObject ErrorMessage;
 
 
     //temporary, will be derived from current player information.
@@ -30,26 +31,41 @@ public class LeaderboardTable : MonoBehaviour
 
     private async void GetLeaderboard()
     {
-        //Format WWWForm to acquire score data
-        WWWForm ScoresRequest = new WWWForm();
-        ScoresRequest.AddField("levelID", LeaderboardManager.LevelID);
+        //Format WWWForm to acquire score data.
+        WWWForm scoresRequest = new WWWForm();
+        scoresRequest.AddField("levelID", LeaderboardManager.LevelID);
 
+        //Send GET request to the backend API and acquire score list.
         string requestResult = await BackendManager.GETRequest($"https://grana.vinniehat.com/api/score/scores/{LeaderboardManager.LevelID}");
         if (requestResult != null)
         {
-            //Deserialize score data and convert to List<tempPlayer>
+            //Deserialize score data and convert to List<tempPlayer>.
             var x = JsonConvert.DeserializeObject<List<LeaderboardModel>>(requestResult);
+            string userID = PlayerPrefs.GetString("PlayerID");
+            
+            //Transfer data into playerList for rendering.
             foreach (LeaderboardModel player in x)
             {
-                tempPlayer p = new tempPlayer
+                tempPlayer a = new tempPlayer
                 {
                     playerName = player.user.username,
-                    playerUUID = player.user.username,
+                    playerUUID = player.user.UUID,
                     highScore = player.score
                 };
+                playerList.Add(a);
 
-
-
+                a.AddName();
+            }
+            
+            //Sort the list by score.
+            playerList.OrderByDescending(o => o.highScore);
+            for (int i = 0; i < playerList.Count; i++)
+            {
+                if (playerList[i].playerUUID == userID)
+                {
+                    currentPlayerIndex = i + 1;
+                    Debug.Log($"Current player's index: {currentPlayerIndex}");
+                }
             }
 
             //Sort list by high score
@@ -59,9 +75,14 @@ public class LeaderboardTable : MonoBehaviour
             //Only generate list if leaderboard was successfully loaded.
             GenerateList();
         }
-        else //failed to load leaderboard;
+        else
+        {
+            //Failed to load leaderboard, do not load prefab. 
+            Debug.Log("Failed to load the leaderboard.");
+            
 
-            Debug.Log("Finished running GetLeaderboard request.");
+        }
+        Debug.Log("Finished running GetLeaderboard request.");
     }
 
     private void GetPlayerIndex()
@@ -91,7 +112,7 @@ public class LeaderboardTable : MonoBehaviour
         for (int i = 0; i < playerList.Count; i++)
         {
             GameObject cell = Instantiate(LBCellPrefab, GameObject.Find("Content").transform);
-            cell.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i + 1) + "  " + playerList[i].playerName;
+            cell.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i+1) + "  " + playerList[i].displayName;
             cell.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = playerList[i].highScore + "";
 
             if (i == currentPlayerIndex)
@@ -104,6 +125,7 @@ public class LeaderboardTable : MonoBehaviour
     {
         public string displayName = "";
         public string playerName { get; set; }
+        public string displayName = "";
         public int highScore { get; set; }
         public string playerUUID { get; set; }
 

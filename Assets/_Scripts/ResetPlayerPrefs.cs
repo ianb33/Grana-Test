@@ -56,6 +56,7 @@ public class ResetPlayerPrefs : MonoBehaviour
         SignupRequest.AddField("username", PlayerID);
         SignupRequest.AddField("password", PlayerID);
         SignupRequest.AddField("email", PlayerID);
+        SignupRequest.AddField("uuid", PlayerID);
         
         //Send the form to the backend API
         string requestResult = await BackendManager.POSTRequest("https://grana.vinniehat.com/api/auth/signup", SignupRequest, false);

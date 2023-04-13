@@ -88,24 +88,4 @@ public class GameTimer : MonoBehaviour
         };
     }
 
-
-
-    /* private async void SendScoreData()
-     {
-         Debug.Log("Sending score data...");
-         BackendManager backendManager = this.AddComponent<BackendManager>();
-
-         //Set parameters
-         int levelID = GameObject.Find("GameManager").GetComponent<GameManager>().levelID;
-         int score = GameObject.Find("GameManager").GetComponent<GameManager>().totalPoints;
-
-         //Set up WWWForm with required fields
-         WWWForm SendScoreRequest = new WWWForm();
-         SendScoreRequest.AddField("levelID", levelID);
-         SendScoreRequest.AddField("score", score);
-
-         string requestResult = await backendManager.POSTRequest("https://grana.vinniehat.com/api/score/submit", SendScoreRequest);
-
-     }*/
-
 }

@@ -16,6 +16,7 @@ public class LeaderboardModel
 public class UserModel
 {
     public int userID { get; set; }
-    public string UUID { get; set; }
+    public string uuid { get; set; }
     public string username { get; set; }
+
 }

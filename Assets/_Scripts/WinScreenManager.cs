@@ -61,7 +61,7 @@ public class WinScreenManager : MonoBehaviour
         currentScoreText.text = finalScore.ToString();
         longestWordText.text += longestWord;
         wordsFoundText.text += wordsFound.ToString();
-        exampleText.text += gameWord;
+        exampleText.text = gameWord;
 
         definitionText.text = TemporaryDefinitionHolder.TemporaryDefinitions[levelID - 1][0];
         partOfSpeechText.text = TemporaryDefinitionHolder.TemporaryDefinitions[levelID - 1][1];

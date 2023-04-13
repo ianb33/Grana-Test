@@ -1215,6 +1215,7 @@ MonoBehaviour:
   wordsFoundText: {fileID: 1433321287}
   definitionText: {fileID: 152468312}
   partOfSpeechText: {fileID: 1639804848}
+  exampleText: {fileID: 778784805}
   TemporaryDefinitionHolder: {fileID: 589701314}
 --- !u!114 &589701314
 MonoBehaviour:

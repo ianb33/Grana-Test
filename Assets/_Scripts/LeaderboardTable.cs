@@ -20,36 +20,7 @@ public class LeaderboardTable : MonoBehaviour
     [SerializeField] private int currentPlayerIndex;
 
     //List of players and their scores will be sorted before being pulled from the backend.
-    [SerializeField]
-    private List<tempPlayer> playerList = new List<tempPlayer>
-    {
-        new tempPlayer{ playerName = "aaaaaaa", highScore = 1400},
-        new tempPlayer{ playerName = "bbbbbbb", highScore = 1300},
-        new tempPlayer{ playerName = "ccccccc", highScore = 1200},
-        new tempPlayer{ playerName = "ddddddd", highScore = 1100},
-        new tempPlayer{ playerName = "eeeeeee", highScore = 1000},
-        new tempPlayer{ playerName = "fffffff", highScore = 900},
-        new tempPlayer{ playerName = "ggggggg", highScore = 800},
-        new tempPlayer{ playerName = "hhhhhhh", highScore = 700},
-        new tempPlayer{ playerName = "iiiiiii", highScore = 600},
-        new tempPlayer{ playerName = "jjjjjjj", highScore = 500},
-        new tempPlayer{ playerName = "aaaaaaa", highScore = 400},
-        new tempPlayer{ playerName = "bbbbbbb", highScore = 300},
-        new tempPlayer{ playerName = "ccccccc", highScore = 200},
-        new tempPlayer{ playerName = "ddddddd", highScore = 100},
-        new tempPlayer{ playerName = "eeeeeee", highScore = 90},
-        new tempPlayer{ playerName = "fffffff", highScore = 80},
-        new tempPlayer{ playerName = "ggggggg", highScore = 70},
-        new tempPlayer{ playerName = "hhhhhhh", highScore = 60},
-        new tempPlayer{ playerName = "iiiiiii", highScore = 50},
-        new tempPlayer{ playerName = "jjjjjjj", highScore = 40},
-        new tempPlayer{ playerName = "eeeeeee", highScore = 90},
-        new tempPlayer{ playerName = "fffffff", highScore = 80},
-        new tempPlayer{ playerName = "ggggggg", highScore = 70},
-        new tempPlayer{ playerName = "hhhhhhh", highScore = 60},
-        new tempPlayer{ playerName = "iiiiiii", highScore = 50},
-        new tempPlayer{ playerName = "jjjjjjj", highScore = 40},
-    };
+    [SerializeField] private List<tempPlayer> playerList = new List<tempPlayer>();
 
     private void Start()
     {

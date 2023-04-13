@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
-using UnityEditor.VersionControl;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +14,7 @@ public class LeaderboardTable : MonoBehaviour
 {
     [SerializeField] private LeaderboardManager LeaderboardManager;
     [SerializeField] private GameObject LBCellPrefab;
+
 
     //temporary, will be derived from current player information.
     [SerializeField] private int currentPlayerIndex;
@@ -26,7 +27,7 @@ public class LeaderboardTable : MonoBehaviour
         GetLeaderboard();
     }
 
-   
+
     private async void GetLeaderboard()
     {
         //Format WWWForm to acquire score data
@@ -40,36 +41,57 @@ public class LeaderboardTable : MonoBehaviour
             var x = JsonConvert.DeserializeObject<List<LeaderboardModel>>(requestResult);
             foreach (LeaderboardModel player in x)
             {
-                playerList.Add(new tempPlayer
+                tempPlayer p = new tempPlayer
                 {
                     playerName = player.user.username,
+                    playerUUID = player.user.username,
                     highScore = player.score
-                });
-                
-                
-                
+                };
+
+
+
             }
 
+            //Sort list by high score
+            playerList = playerList.OrderByDescending(o => o.highScore).ToList();
+
+            GetPlayerIndex();
             //Only generate list if leaderboard was successfully loaded.
             GenerateList();
         }
         else //failed to load leaderboard;
-        
-        Debug.Log("Finished running GetLeaderboard request.");
+
+            Debug.Log("Finished running GetLeaderboard request.");
     }
-    
+
+    private void GetPlayerIndex()
+    {
+        string UUID = PlayerPrefs.GetString("PlayerID");
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            if (playerList[i].playerUUID == UUID)
+            {
+                currentPlayerIndex = i;
+                break;
+            }
+        }
+    }
+
     private void GenerateList()
     {
         //set position and height
         RectTransform contentRect = GameObject.Find("Content").GetComponent<RectTransform>();
-        contentRect.sizeDelta = new Vector2(contentRect.sizeDelta.x, Screen.width / 8 * playerList.Count);
-        contentRect.position = new Vector2(contentRect.position.x, -Screen.width / 8 * currentPlayerIndex);
-        
+        int top = currentPlayerIndex * 70;
+        int bottom = (playerList.Count - currentPlayerIndex) * -70;
+
+        contentRect.offsetMax = new Vector2(contentRect.offsetMax.x, top);
+        contentRect.offsetMin = new Vector2(contentRect.offsetMin.x, bottom);
+
 
         for (int i = 0; i < playerList.Count; i++)
         {
             GameObject cell = Instantiate(LBCellPrefab, GameObject.Find("Content").transform);
-            cell.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i+1) + "  " + playerList[i].playerName;
+            cell.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i + 1) + "  " + playerList[i].playerName;
             cell.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = playerList[i].highScore + "";
 
             if (i == currentPlayerIndex)
@@ -78,15 +100,16 @@ public class LeaderboardTable : MonoBehaviour
             }
         }
     }
-
-    private void GetPlayerIndex()
-    {
-        
-    }
-    
     private class tempPlayer
     {
+        public string displayName = "";
         public string playerName { get; set; }
         public int highScore { get; set; }
+        public string playerUUID { get; set; }
+
+        public void SetDisplayName()
+        {
+            displayName = "User" + playerName.Substring(0, 4);
+        }
     }
 }

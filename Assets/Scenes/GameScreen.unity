@@ -585,6 +585,10 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 347017372723658695, guid: 7dfc5ca9462aa5b498fb25118401273a, type: 3}
+      propertyPath: debugMode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 347017372723658695, guid: 7dfc5ca9462aa5b498fb25118401273a, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 913902090}

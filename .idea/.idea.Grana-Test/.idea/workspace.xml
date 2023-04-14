@@ -2,14 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d1f97619-50eb-42f9-b0b4-effc281b1e00" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Images/WinScreenDecor.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Resources/Images/WinScreenDecor.png.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Grana-Test/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Grana-Test/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/LeaderboardScreen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/LeaderboardScreen.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/GameTimer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/GameTimer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GameScreen.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GameScreen.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scripts/LeaderboardTable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/LeaderboardTable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/ResetPlayerPrefs.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/ResetPlayerPrefs.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/WinScreenManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/WinScreenManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,24 +26,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Discover.Launch.Via.Unity": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Discover.Launch.Via.Unity&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\emmal\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\emmal\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\emmal\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\emmal\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\emmal\\AppData\\Roaming\\JetBrains\\Rider2022.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\emmal\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2021.3.12f1\Editor\Unity.exe" />
@@ -97,7 +92,7 @@
       <updated>1679159755820</updated>
       <workItem from="1679159764520" duration="24000" />
       <workItem from="1681310966163" duration="2613000" />
-      <workItem from="1681340028045" duration="6582000" />
+      <workItem from="1681340028045" duration="9941000" />
     </task>
     <servers />
   </component>

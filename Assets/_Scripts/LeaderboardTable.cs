@@ -49,12 +49,12 @@ public class LeaderboardTable : MonoBehaviour
                 tempPlayer a = new tempPlayer
                 {
                     playerName = player.user.username,
-                    playerUUID = player.user.UUID,
+                    playerUUID = player.user.uuid,
                     highScore = player.score
                 };
+                a.SetDisplayName();
                 playerList.Add(a);
 
-                a.AddName();
             }
             
             //Sort the list by score.
@@ -71,8 +71,8 @@ public class LeaderboardTable : MonoBehaviour
             //Sort list by high score
             playerList = playerList.OrderByDescending(o => o.highScore).ToList();
 
-            GetPlayerIndex();
             //Only generate list if leaderboard was successfully loaded.
+            GetPlayerIndex();
             GenerateList();
         }
         else
@@ -90,9 +90,10 @@ public class LeaderboardTable : MonoBehaviour
         string UUID = PlayerPrefs.GetString("PlayerID");
         for (int i = 0; i < playerList.Count; i++)
         {
-            if (playerList[i].playerUUID == UUID)
+            if (playerList[i].playerUUID == UUID || playerList[i].playerName == UUID)
             {
                 currentPlayerIndex = i;
+                Debug.Log($"Current Player Index: {currentPlayerIndex}");
                 break;
             }
         }
@@ -102,11 +103,9 @@ public class LeaderboardTable : MonoBehaviour
     {
         //set position and height
         RectTransform contentRect = GameObject.Find("Content").GetComponent<RectTransform>();
-        int top = currentPlayerIndex * 70;
-        int bottom = (playerList.Count - currentPlayerIndex) * -70;
 
-        contentRect.offsetMax = new Vector2(contentRect.offsetMax.x, top);
-        contentRect.offsetMin = new Vector2(contentRect.offsetMin.x, bottom);
+        contentRect.position = new Vector2(contentRect.position.x, currentPlayerIndex * Screen.height / 12);
+        contentRect.sizeDelta = new Vector2(contentRect.sizeDelta.x, playerList.Count * Screen.height / 12);
 
 
         for (int i = 0; i < playerList.Count; i++)
@@ -125,7 +124,6 @@ public class LeaderboardTable : MonoBehaviour
     {
         public string displayName = "";
         public string playerName { get; set; }
-        public string displayName = "";
         public int highScore { get; set; }
         public string playerUUID { get; set; }
 

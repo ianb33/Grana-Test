@@ -111,7 +111,7 @@ public class LeaderboardTable : MonoBehaviour
         for (int i = 0; i < playerList.Count; i++)
         {
             GameObject cell = Instantiate(LBCellPrefab, GameObject.Find("Content").transform);
-            cell.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i+1) + "  " + playerList[i].displayName;
+            cell.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = (i + 1) + "  " + playerList[i].displayName;
             cell.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = playerList[i].highScore + "";
 
             if (i == currentPlayerIndex)

@@ -20,6 +20,7 @@ public class WinScreenManager : MonoBehaviour
 
 
     [SerializeField] private TemporaryDefinitionHolder TemporaryDefinitionHolder;
+    [SerializeField] private PauseScreenManager pauseScreenManager;
 
     private string gameWord;
     private int finalScore;
@@ -42,6 +43,9 @@ public class WinScreenManager : MonoBehaviour
         this.finalScore = finalScore;
         this.highScore = highScore;
         this.levelID = levelID;
+
+        pauseScreenManager.levelID = levelID + 1;
+        pauseScreenManager.gameWord = gameWord;
 
         wordsUsed.Remove(gameWord);
 
@@ -78,6 +82,5 @@ public class WinScreenManager : MonoBehaviour
         SendScoreRequest.AddField("score", finalScore);
 
         string requestResult = await backendManager.POSTRequest("https://grana.vinniehat.com/api/score/submit", SendScoreRequest);
-
     }
 }

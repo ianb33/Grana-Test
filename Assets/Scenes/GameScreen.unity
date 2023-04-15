@@ -1912,6 +1912,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 119105303}
     - target: {fileID: 5874326654744081424, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 913902090}
+    - target: {fileID: 5874326654744081424, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
       propertyPath: pauseGameButton
       value: 
       objectReference: {fileID: 1247719430}

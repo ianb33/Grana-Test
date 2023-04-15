@@ -1308,6 +1308,7 @@ MonoBehaviour:
   partOfSpeechText: {fileID: 1639804848}
   exampleText: {fileID: 778784805}
   TemporaryDefinitionHolder: {fileID: 589701314}
+  pauseScreenManager: {fileID: 1541171452}
 --- !u!114 &589701314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2560,6 +2561,17 @@ PrefabInstance:
       objectReference: {fileID: 381369288}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
+--- !u!114 &1541171452 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5874326654744081424, guid: 515632e0d5461a84098d12a8bbebf7f7, type: 3}
+  m_PrefabInstance: {fileID: 1541171451}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07c6d1c6f93b76419a817936badaa33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1568824796
 GameObject:
   m_ObjectHideFlags: 0

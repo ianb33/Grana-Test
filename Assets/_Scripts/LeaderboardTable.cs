@@ -14,6 +14,7 @@ public class LeaderboardTable : MonoBehaviour
 {
     [SerializeField] private LeaderboardManager LeaderboardManager;
     [SerializeField] private GameObject LBCellPrefab;
+    [SerializeField] private GameObject ErrorMessage;
 
 
     //temporary, will be derived from current player information.
@@ -30,47 +31,81 @@ public class LeaderboardTable : MonoBehaviour
 
     private async void GetLeaderboard()
     {
-        //Format WWWForm to acquire score data
-        WWWForm ScoresRequest = new WWWForm();
-        ScoresRequest.AddField("levelID", LeaderboardManager.LevelID);
+        //Format WWWForm to acquire score data.
+        WWWForm scoresRequest = new WWWForm();
+        scoresRequest.AddField("levelID", LeaderboardManager.LevelID);
 
+        //Send GET request to the backend API and acquire score list.
         string requestResult = await BackendManager.GETRequest($"https://grana.vinniehat.com/api/score/scores/{LeaderboardManager.LevelID}");
         if (requestResult != null)
         {
-            //Deserialize score data and convert to List<tempPlayer>
+            //Deserialize score data and convert to List<tempPlayer>.
             var x = JsonConvert.DeserializeObject<List<LeaderboardModel>>(requestResult);
+            string userID = PlayerPrefs.GetString("PlayerID");
+            
+            //Transfer data into playerList for rendering.
             foreach (LeaderboardModel player in x)
             {
-                tempPlayer p = new tempPlayer
+                tempPlayer a = new tempPlayer
                 {
                     playerName = player.user.username,
-                    playerUUID = player.user.username,
+                    playerUUID = player.user.uuid,
                     highScore = player.score
                 };
-                p.SetDisplayName();
+                a.SetDisplayName();
+                playerList.Add(a);
 
-                playerList.Add(p);
-
+            }
+            
+            //Sort the list by score.
+            playerList.OrderByDescending(o => o.highScore);
+            for (int i = 0; i < playerList.Count; i++)
+            {
+                if (playerList[i].playerUUID == userID)
+                {
+                    currentPlayerIndex = i + 1;
+                    Debug.Log($"Current player's index: {currentPlayerIndex}");
+                }
             }
 
             //Sort list by high score
             playerList = playerList.OrderByDescending(o => o.highScore).ToList();
 
-            GetPlayerIndex();
             //Only generate list if leaderboard was successfully loaded.
+            GetPlayerIndex();
             GenerateList();
         }
-        else //failed to load leaderboard;
+        else
+        {
+            //Failed to load leaderboard, do not load prefab. 
+            Debug.Log("Failed to load the leaderboard.");
+            
 
-            Debug.Log("Finished running GetLeaderboard request.");
+        }
+        Debug.Log("Finished running GetLeaderboard request.");
+    }
+
+    private void GetPlayerIndex()
+    {
+        string UUID = PlayerPrefs.GetString("PlayerID");
+        for (int i = 0; i < playerList.Count; i++)
+        {
+            if (playerList[i].playerUUID == UUID || playerList[i].playerName == UUID)
+            {
+                currentPlayerIndex = i;
+                Debug.Log($"Current Player Index: {currentPlayerIndex}");
+                break;
+            }
+        }
     }
 
     private void GenerateList()
     {
         //set position and height
         RectTransform contentRect = GameObject.Find("Content").GetComponent<RectTransform>();
-        contentRect.sizeDelta = new Vector2(contentRect.sizeDelta.x, Screen.width / 8 * playerList.Count);
-        contentRect.position = new Vector2(contentRect.position.x, -Screen.width / 8 * currentPlayerIndex);
+
+        contentRect.position = new Vector2(contentRect.position.x, currentPlayerIndex * Screen.height / 12);
+        contentRect.sizeDelta = new Vector2(contentRect.sizeDelta.x, playerList.Count * Screen.height / 12);
 
 
         for (int i = 0; i < playerList.Count; i++)
@@ -85,20 +120,6 @@ public class LeaderboardTable : MonoBehaviour
             }
         }
     }
-
-    private void GetPlayerIndex()
-    {
-        string UUID = PlayerPrefs.GetString("PlayerID");
-        for (int i = 0; i < playerList.Count; i++)
-        {
-            if (playerList[i].playerUUID == UUID)
-            {
-                currentPlayerIndex = i;
-                break;
-            }
-        }
-    }
-
     private class tempPlayer
     {
         public string displayName = "";

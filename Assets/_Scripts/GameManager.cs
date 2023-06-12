@@ -11,15 +11,8 @@ using Random = System.Random;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Game Details")]
-    [SerializeField] private int levelID;
-    [SerializeField] private string gameWord;
-    [SerializeField] private List<string> anagramsList; //might not be necessary;  we can just check if the inputWord is an anagram of the base word -- also check if its a real word
-    [SerializeField] private Dictionary<char, int> pointValues;
-
     [Header("Live Data")]
-    [SerializeField] private int totalPoints;
-    [SerializeField] private List<string> wordsUsed;
+
     [SerializeField] private TextMeshProUGUI scoreBox;
     [SerializeField] private TextMeshProUGUI wordDisplay;
     [SerializeField] private GameObject gameTimer;
@@ -32,8 +25,6 @@ public class GameManager : MonoBehaviour
 
     private Random rand = new Random();
 
-    private List<string> words = new List<string> { "lemons", "anagram", "tenacious", "repristinate", "superannuated", "rasorial", "lambent", "caravel", "gridiron", "quixotic", "bulwark", "syzygy", "vellicate", "rejuvenate", "retcon", "paresthesia", "pandiculation", "leveret" };
-
     // Start is called before the first frame update
     IEnumerator Start()
     {
@@ -43,33 +34,20 @@ public class GameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
     }
 
-    public void SetLevelID(int ID)
-    {
-        levelID = ID;
-    }
+
 
     //initialize all variables and signal the start of the course with a selected word
     private void InitializeGame()
     {
-        totalPoints = 0;
-        if (levelID > 0)
+        LevelData.levelData.totalPoints = 0;
+        if (LevelData.levelData.levelID > 0)
         {
-            gameWord = words[levelID - 1].ToUpper();
+            LevelData.levelData.gameWord = LevelData.levelData.words[LevelData.levelData.levelID - 1].ToUpper(); //will need to be changed when words are dynamic
         }
-        wordDisplay.text = gameWord;
-        pointValues = new Dictionary<char, int>()
-        {
-            {'A', 1}, {'E', 1}, {'I', 1}, {'L', 1}, {'N', 1}, {'O', 1}, {'R', 1}, {'S', 1}, {'T', 1}, {'U', 1},
-            {'D', 2}, {'G', 2},
-            {'B', 3}, {'C', 3}, {'M', 3}, {'P', 3},
-            {'F', 4}, {'H', 4}, {'V', 4}, {'W', 4}, {'Y', 4},
-            {'K', 5},
-            {'J', 8}, {'X', 8},
-            {'Q', 10}, {'Z', 10},
-        };
+        wordDisplay.text = LevelData.levelData.gameWord;
 
-        Debug.Log($"Game has begun with the word: {gameWord}");
-        wordsUsed.Add(gameWord);
+        Debug.Log($"Game has begun with the word: {LevelData.levelData.gameWord}");
+        LevelData.levelData.wordsUsed.Add(LevelData.levelData.gameWord);
     }
 
     public bool submitWord(string word)
@@ -77,23 +55,23 @@ public class GameManager : MonoBehaviour
         Debug.Log($"attempting to use word: {word}");
         Debug.Log($"Is {word} an anagram?: {isAnagram(word)}");
 
-        Debug.Log($"Is {word} in wordsUsed?: {wordsUsed.Contains(word)}");
+        Debug.Log($"Is {word} in wordsUsed?: {LevelData.levelData.wordsUsed.Contains(word)}");
 
-        if (word.Length > 2 && isAnagram(word) && !wordsUsed.Contains(word)) //later, check if its an actual word in the dictionary
+        if (word.Length > 2 && isAnagram(word) && !LevelData.levelData.wordsUsed.Contains(word)) //later, check if its an actual word in the dictionary
         {
 
             //true -> calculate points earned and increase totalPoints
             int pointsReceived = 0;
-            wordsUsed.Add(word);
+            LevelData.levelData.wordsUsed.Add(word);
             foreach (char a in word.ToCharArray())
             {
-                pointsReceived += pointValues[a];
+                pointsReceived += LevelData.levelData.pointValues[a];
             }
 
-            totalPoints += pointsReceived;
-            scoreBox.GetComponent<TextMeshProUGUI>().text = $"Score: {totalPoints}";
+            LevelData.levelData.totalPoints += pointsReceived;
+            scoreBox.GetComponent<TextMeshProUGUI>().text = $"Score: {LevelData.levelData.totalPoints}";
             Debug.Log($"Points received for word \"{word}\": {pointsReceived} points.");
-            Debug.Log($"Total points now: {totalPoints}");
+            Debug.Log($"Total points now: {LevelData.levelData.totalPoints}");
 
             DisplayAlert(rand.NextDouble() + "Success", $"+{pointsReceived} for {word}", 0.2f, 1f, 100, 0.3f);
             StartCoroutine(submitManager.FadeOutCR(new Color(0.09803922f, .6666667f, 0, 1)));
@@ -112,16 +90,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void SetWord(string word)
-    {
-        gameWord = word;
-        Debug.Log($"gameWord has been updated to: \"{word}\".");
-    }
-
     private bool isAnagram(string inputWord)
     {
         var inputArray = inputWord.ToCharArray().ToList();
-        var baseArray = gameWord.ToCharArray().ToList();
+        var baseArray = LevelData.levelData.gameWord.ToCharArray().ToList();
         int matches = 0;
 
         baseArray.Sort((char a, char b) =>
@@ -175,30 +147,5 @@ public class GameManager : MonoBehaviour
         GameAlert.transform.transform.SetParent(GameObject.Find("GUICanvas").transform);
         BackgroundBlur.SetActive(false);
         gameTimer.GetComponent<GameTimer>().TogglePause();
-    }
-
-    public string GetGameWord()
-    {
-        return gameWord;
-    }
-
-    public int GetFinalScore()
-    {
-        return totalPoints;
-    }
-
-    /*public int GetHighScore()
-    {
-        return highScore;
-    }*/
-
-    public List<string> GetWordsUsed()
-    {
-        return wordsUsed;
-    }
-
-    public int GetLevelID()
-    {
-        return levelID;
     }
 }

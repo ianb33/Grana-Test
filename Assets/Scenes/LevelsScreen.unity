@@ -310,6 +310,7 @@ MonoBehaviour:
   - {fileID: 1988239688}
   - {fileID: 1853238858}
   - {fileID: 721956583}
+  transitionManager: {fileID: 511967644}
 --- !u!114 &71408958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4848,6 +4849,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1881056598}
+  - component: {fileID: 1881056599}
   m_Layer: 0
   m_Name: Menu Manager
   m_TagString: Untagged
@@ -4870,6 +4872,38 @@ Transform:
   m_Father: {fileID: 1818861958}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1881056599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1881056597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14d06bff26568cd47a38c1ff8fd175cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  words:
+  - lemons
+  - anagram
+  - tenacious
+  - repristinate
+  - superannuated
+  - rasorial
+  - lambent
+  - caravel
+  - gridiron
+  - quixotic
+  - bulwark
+  - syzygy
+  - vellicate
+  - rejuvenate
+  - retcon
+  - paresthesia
+  - pandiculation
+  - leveret
+  wordsUsed: []
 --- !u!1 &1898216294
 GameObject:
   m_ObjectHideFlags: 0

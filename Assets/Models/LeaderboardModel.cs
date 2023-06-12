@@ -10,7 +10,7 @@ public class LeaderboardModel
     public string createdAt { get; set; }
     public string updatedAt { get; set; }
     public int userID { get; set; }
-    public UserModel user { get; set; } 
+    public UserModel user { get; set; }
 }
 
 public class UserModel

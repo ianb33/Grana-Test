@@ -936,11 +936,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51fb0973ebd6724398df5a883bfd515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelID: 1
-  gameWord: 
-  anagramsList: []
-  totalPoints: 0
-  wordsUsed: []
   scoreBox: {fileID: 978113721}
   wordDisplay: {fileID: 1625348516}
   gameTimer: {fileID: 119105301}

@@ -19,9 +19,6 @@ public class PauseScreenManager : MonoBehaviour
     [SerializeField] private TransitionManager transitionManager;
     [SerializeField] private GameManager gameManager;
 
-    public string gameWord;
-    public int levelID;
-
     private void Start()
     {
         if (leaderBoardButton != null)
@@ -77,13 +74,6 @@ public class PauseScreenManager : MonoBehaviour
 
     public void LeaderBoardButtonClicked()
     {
-        AsyncOperation sceneLoadAsync = SceneManager.LoadSceneAsync("LeaderboardScreen", LoadSceneMode.Single);
-        sceneLoadAsync.completed += operation =>
-        {
-            GameObject boardManager = GameObject.Find("Leaderboard Manager");
-
-            boardManager.GetComponent<LeaderboardManager>().SetGameWord(gameWord);
-            boardManager.GetComponent<LeaderboardManager>().SetLevelID(levelID);
-        };
+        StartCoroutine(transitionManager.StartSceneTransition("LeaderboardScreen"));
     }
 }

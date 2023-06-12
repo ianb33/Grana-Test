@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "84898854495",
+    "firebase_url": "https://grana-game-default-rtdb.firebaseio.com",
+    "project_id": "grana-game",
+    "storage_bucket": "grana-game.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84898854495:android:165e480f8ce2f25aa18dea",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.GranaTest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "84898854495-mou36b9dk69cfjag0fjo4ndvund4cf94.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBPfM9FU1rZDfetzQdlMsokroZH2L7Pcc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "84898854495-mou36b9dk69cfjag0fjo4ndvund4cf94.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

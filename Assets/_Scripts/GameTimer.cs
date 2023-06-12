@@ -13,6 +13,7 @@ public class GameTimer : MonoBehaviour
     [SerializeField] public GameObject timer;
     [SerializeField] public float duration;
     [SerializeField] private GameManager gameManager;
+    [SerializeField] private TransitionManager transitionManager;
 
     public bool debugMode;
     public float deltaTime = 0.0f;
@@ -79,13 +80,7 @@ public class GameTimer : MonoBehaviour
         GameObject.Find("GameManager").GetComponent<GameManager>().DisplayAlert("endAlert", "Time's up!", 0.4f, 1f, 200, 2);
         yield return new WaitForSeconds(3);
 
-        AsyncOperation sceneLoadAsync = SceneManager.LoadSceneAsync("WinScreen", LoadSceneMode.Single);
-        sceneLoadAsync.completed += operation =>
-        {
-            GameObject endScreenManager = GameObject.Find("End Screen Manager");
-
-            endScreenManager.GetComponent<WinScreenManager>().SetScreenData(gameManager.GetGameWord(), gameManager.GetFinalScore(), 0, gameManager.GetWordsUsed(), gameManager.GetLevelID());
-        };
+        StartCoroutine(transitionManager.StartSceneTransition("WinScreen"));
     }
 
 }

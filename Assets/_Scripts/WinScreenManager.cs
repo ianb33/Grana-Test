@@ -8,7 +8,6 @@ using UnityEngine;
 
 public class WinScreenManager : MonoBehaviour
 {
-    [SerializeField] private int levelID;
     [SerializeField] private TextMeshProUGUI gameWordText;
     [SerializeField] private TextMeshProUGUI currentScoreText;
     [SerializeField] private TextMeshProUGUI highScoreText;
@@ -20,33 +19,19 @@ public class WinScreenManager : MonoBehaviour
 
 
     [SerializeField] private TemporaryDefinitionHolder TemporaryDefinitionHolder;
-    [SerializeField] private PauseScreenManager pauseScreenManager;
 
-    private string gameWord;
-    private int finalScore;
-    private int highScore;
     private string longestWord;
     private int wordsFound;
-
-    private string[] wordsUsed;
+    private List<string> wordsUsed = LevelData.levelData.wordsUsed;
 
     private IEnumerator Start()
     {
-        SendScoreData();
         yield return null;
         InitializeScreenData();
     }
 
     public void SetScreenData(string gameWord, int finalScore, int highScore, List<string> wordsUsed, int levelID)
     {
-        this.gameWord = gameWord;
-        this.finalScore = finalScore;
-        this.highScore = highScore;
-        this.levelID = levelID;
-
-        pauseScreenManager.levelID = levelID + 1;
-        pauseScreenManager.gameWord = gameWord;
-
         wordsUsed.Remove(gameWord);
 
         wordsFound = wordsUsed.Count;
@@ -61,26 +46,13 @@ public class WinScreenManager : MonoBehaviour
 
     public void InitializeScreenData()
     {
-        gameWordText.text += gameWord;
-        currentScoreText.text = finalScore.ToString();
+        gameWordText.text += LevelData.levelData.gameWord;
+        currentScoreText.text = LevelData.levelData.totalPoints.ToString();
         longestWordText.text += longestWord;
         wordsFoundText.text += wordsFound.ToString();
-        exampleText.text = gameWord;
+        exampleText.text = LevelData.levelData.gameWord;
 
-        definitionText.text = TemporaryDefinitionHolder.TemporaryDefinitions[levelID - 1][0];
-        partOfSpeechText.text = TemporaryDefinitionHolder.TemporaryDefinitions[levelID - 1][1];
-    }
-
-    private async void SendScoreData()
-    {
-        Debug.Log("Sending score data...");
-        BackendManager backendManager = this.AddComponent<BackendManager>();
-
-        //Set up WWWForm with required fields
-        WWWForm SendScoreRequest = new WWWForm();
-        SendScoreRequest.AddField("levelID", levelID);
-        SendScoreRequest.AddField("score", finalScore);
-
-        string requestResult = await backendManager.POSTRequest("https://grana.vinniehat.com/api/score/submit", SendScoreRequest);
+        definitionText.text = TemporaryDefinitionHolder.TemporaryDefinitions[LevelData.levelData.levelID - 1][0];
+        partOfSpeechText.text = TemporaryDefinitionHolder.TemporaryDefinitions[LevelData.levelData.levelID - 1][1];
     }
 }
